@@ -1,6 +1,6 @@
 mountpoints:
   /:
-    url: "https://author-p130360-e1272151.adobeaemcloud.com/bin/franklin.delivery/adobe-rnd/aem-boilerplate-xcom/main"
+    url: "https://author-p147931-e1511083.adobeaemcloud.com/bin/franklin.delivery/Mancosiris13/universal-editor-getting-started/main"
     type: "markup"
     suffix: ".html"
   

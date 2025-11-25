@@ -90,6 +90,69 @@
     ]
   },
   {
+    "id": "full-width-compact-banner-with-buttons",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "background",
+        "label": "Background Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "badge",
+        "label": "Badge Text",
+        "description": "Optional badge label"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "richtext",
+        "name": "subtitle",
+        "label": "Subtitle",
+        "description": "Optional subtitle text"
+      },
+      {
+        "component": "select",
+        "name": "alignment",
+        "label": "Content Alignment",
+        "options": [
+          {
+            "name": "Center",
+            "value": "center"
+          },
+          {
+            "name": "Left",
+            "value": "left"
+          },
+          {
+            "name": "Right",
+            "value": "right"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "full-width-compact-banner-with-buttons-link-button",
+    "fields": [
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Button Label",
+        "description": "Text to show inside the button"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Button Link"
+      }
+    ]
+  },
+  {
     "id": "cards-carousel-card",
     "fields": [
       {

@@ -22,6 +22,7 @@
       "cards",
       "columns",
       "cards-carousel",
+      "full-width-compact-banner-with-buttons",
       "fragment",
       "product-teaser",
       "product-recommendations",
@@ -397,6 +398,12 @@
     "id": "cards-carousel",
     "components": [
       "cards-carousel-card"
+    ]
+  },
+  {
+    "id": "full-width-compact-banner-with-buttons",
+    "components": [
+      "full-width-compact-banner-with-buttons-link-button"
     ]
   },
   {

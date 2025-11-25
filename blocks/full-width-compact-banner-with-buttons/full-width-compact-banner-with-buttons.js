@@ -4,14 +4,23 @@ export default function decorate(block) {
     return;
   }
 
-  const rows = [...block.children];
+  const rows = [...block.querySelectorAll(':scope > div')];
   if (!rows.length) return;
 
-  const configRow = rows[0];
-  // Temporarily hide child buttons; only render background, badge, title, subtitle
-  const buttonRows = [];
-  const cells = [...configRow.children];
+  const extractCells = (row) => {
+    const direct = [...row.children];
+    if (direct.length === 1 && direct[0]?.children?.length) {
+      return [...direct[0].children];
+    }
+    return direct;
+  };
 
+  const configRows = rows.slice(0, 5);
+  const buttonRows = rows
+    .slice(5)
+    .map(extractCells)
+    .filter((cellsArr) => cellsArr.length <= 2);
+  const cells = configRows.flatMap(extractCells);
   const backgroundCell = cells[0];
   const bgMedia = backgroundCell?.querySelector('img, picture source, video, a');
   const bgSrc = bgMedia?.src || bgMedia?.getAttribute?.('srcset') || bgMedia?.getAttribute?.('href');
@@ -55,8 +64,7 @@ export default function decorate(block) {
   const btnWrap = document.createElement('div');
   btnWrap.className = 'fwcb-buttons';
 
-  buttonRows.forEach((row) => {
-    const btnCells = [...row.children];
+  buttonRows.forEach((btnCells) => {
     const label = btnCells[0]?.textContent.trim();
     const linkAnchor = btnCells[1]?.querySelector('a');
     if (!label || !linkAnchor?.href) return;

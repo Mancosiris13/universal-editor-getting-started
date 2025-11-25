@@ -1,7 +1,10 @@
+.full-width-compact-banner-with-buttons-container {
+    border-top: 10px !important;
+    border-bottom: 0 !important;
+}
 .fwcb {
     position: relative;
     overflow: hidden;
-    border-radius: 14px;
     min-height: 240px;
     padding: 40px 24px;
     display: flex;
@@ -26,8 +29,7 @@
     background: #050505;
     border-radius: 22px;
     padding: 28px 32px 24px;
-    max-width: 1000px;
-    width: min(100%, 1000px);
+    width: min(100%, 700px);
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -45,18 +47,20 @@
 }
 
 .fwcb-align-center {
+    display: flex;
     text-align: center;
     align-items: center;
 }
 
 .fwcb-badge {
-    align-self: flex-start;
-    background: #f8d7db;
-    color: #b31f3c;
+    background: #ffffff;
+    color: #cc0058;
     font-weight: 700;
-    padding: 6px 12px;
-    border-radius: 8px;
+    padding: 4px;
+    border-radius: 4px;
     font-size: 12px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
 }
 
 .fwcb-title {
@@ -89,28 +93,32 @@
 }
 
 .fwcb-button {
+    font-size: 1.4rem !important;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 16px;
+    padding: 7px 16px;
     border-radius: 999px;
     background: #fff;
     color: #111;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
     border: 1px solid #fff;
     transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
 }
 
 .fwcb-button:hover,
 .fwcb-button:focus-visible {
-    background: #111;
-    color: #fff;
-    border-color: #111;
+    background: #000000;
+    color: #ffffff !important;
+    border-color: #ffffff;
+    text-decoration: none !important;
 }
 
 .fwcb-button:active {
     transform: translateY(1px);
+    text-decoration: none;
 }
 
 @media (max-width: 768px) {

@@ -1,0 +1,133 @@
+.fwcb {
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    min-height: 240px;
+    padding: 40px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1a1a;
+    color: #fff;
+    background-image: var(--fwcb-bg-image);
+    background-size: cover;
+    background-position: center;
+}
+
+.fwcb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+}
+
+.fwcb-content {
+    position: relative;
+    z-index: 1;
+    background: #050505;
+    border-radius: 22px;
+    padding: 28px 32px 24px;
+    max-width: 1000px;
+    width: min(100%, 1000px);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    text-align: center;
+}
+
+.fwcb-align-left {
+    text-align: left;
+    align-items: flex-start;
+}
+
+.fwcb-align-right {
+    text-align: right;
+    align-items: flex-end;
+}
+
+.fwcb-align-center {
+    text-align: center;
+    align-items: center;
+}
+
+.fwcb-badge {
+    align-self: flex-start;
+    background: #f8d7db;
+    color: #b31f3c;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.fwcb-title {
+    margin: 0;
+    font-size: 42px;
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.fwcb-subtitle {
+    margin: 0;
+    font-size: 16px;
+    color: #f0f0f0;
+}
+
+.fwcb-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.fwcb-align-left .fwcb-buttons {
+    justify-content: flex-start;
+}
+
+.fwcb-align-right .fwcb-buttons {
+    justify-content: flex-end;
+}
+
+.fwcb-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: #fff;
+    color: #111;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid #fff;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+
+.fwcb-button:hover,
+.fwcb-button:focus-visible {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+}
+
+.fwcb-button:active {
+    transform: translateY(1px);
+}
+
+@media (max-width: 768px) {
+    .fwcb {
+        padding: 28px 16px;
+    }
+
+    .fwcb-content {
+        padding: 20px;
+        gap: 14px;
+    }
+
+    .fwcb-title {
+        font-size: 28px;
+    }
+
+    .fwcb-subtitle {
+        font-size: 14px;
+    }
+}

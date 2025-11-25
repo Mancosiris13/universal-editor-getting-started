@@ -28,10 +28,25 @@ module.exports = {
         allow: ['warn', 'error', 'info', 'debug'],
       },
     ],
-    'no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+    'no-unused-vars': [
+      'error',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+    ],
     'no-underscore-dangle': 'off', // allow all underscore properties
+    // keep the rule on by default, but relax per file below
+    'xwalk/max-cells': ['error', { max: 30 }],
   },
   overrides: [
+    {
+      files: [
+        'component-models.json',
+        'component-definition.json',
+        'component-filters.json',
+      ],
+      rules: {
+        'xwalk/max-cells': 'off', // allow >4 cells in block JSON definitions
+      },
+    },
     {
       files: ['build.mjs'],
       rules: {

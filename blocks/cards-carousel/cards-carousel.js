@@ -1,4 +1,9 @@
 export default function decorate(block) {
+  if (window.xwalk?.isAuthorEnv) {
+    block.classList.add('cards-carousel');
+    return;
+  }
+
   const rows = [...block.children];
   block.textContent = '';
 
@@ -54,8 +59,8 @@ export default function decorate(block) {
       card.append(subtitle);
     }
 
-    const ctaCell = cells[4];
-    const ctaLink = ctaCell?.querySelector('a');
+    const subtitleCell = cells[3];
+    const ctaLink = subtitleCell?.querySelector('a');
     if (ctaLink) {
       const cta = document.createElement('a');
       cta.className = 'cc-cta';

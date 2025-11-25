@@ -2,21 +2,21 @@
   {
     "id": "quote",
     "fields": [
-       {
-         "component": "richtext",
-         "name": "quote",
-         "value": "",
-         "label": "Quote",
-         "valueType": "string"
-       },
-       {
-         "component": "text",
-         "valueType": "string",
-         "name": "author",
-         "label": "Author",
-         "value": ""
-       },
-       {
+      {
+        "component": "richtext",
+        "name": "quote",
+        "value": "",
+        "label": "Quote",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "author",
+        "label": "Author",
+        "value": ""
+      },
+      {
         "component": "select",
         "name": "classes",
         "value": "",
@@ -38,7 +38,7 @@
           }
         ]
       }
-     ]
+    ]
   },
   {
     "id": "cards-carousel",
@@ -60,8 +60,60 @@
           {
             "name": "Light Background",
             "value": "cc-light"
+          },
+          {
+            "name": "Berry Bliss + Black Text",
+            "value": "cc-berry-ink"
+          },
+          {
+            "name": "Berry Bliss + White Text",
+            "value": "cc-berry-white"
+          },
+          {
+            "name": "Teal Splash + Black Text",
+            "value": "cc-teal-ink"
+          },
+          {
+            "name": "Teal Splash + White Text",
+            "value": "cc-teal-white"
+          },
+          {
+            "name": "Orange Squeeze + Black Text",
+            "value": "cc-orange-ink"
+          },
+          {
+            "name": "Orange Squeeze + White Text",
+            "value": "cc-orange-white"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "cards-carousel-card",
+    "fields": [
+      {
+        "component": "text",
+        "name": "badge",
+        "label": "Badge",
+        "description": "Optional badge text"
+      },
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "richtext",
+        "name": "subtitle",
+        "label": "Subtitle & CTA",
+        "description": "Subtitle text; you can add a link here to render as CTA"
       }
     ]
   },

@@ -103,3 +103,45 @@
 .cards-carousel.cc-light .cc-card {
     background: #fff;
 }
+
+.cards-carousel.cc-berry-ink .cc-card {
+    background: #f6ddeb;
+    color: #111;
+}
+
+.cards-carousel.cc-berry-white .cc-card {
+    background: #f6ddeb;
+    color: #fff;
+}
+
+.cards-carousel.cc-teal-ink .cc-card {
+    background: #b9f0f3;
+    color: #111;
+}
+
+.cards-carousel.cc-teal-white .cc-card {
+    background: #b9f0f3;
+    color: #fff;
+}
+
+.cards-carousel.cc-orange-ink .cc-card {
+    background: #f26b1c;
+    color: #111;
+}
+
+.cards-carousel.cc-orange-white .cc-card {
+    background: #f26b1c;
+    color: #fff;
+}
+
+.cards-carousel[class*='cc-berry-'] .cc-title,
+.cards-carousel[class*='cc-berry-'] .cc-subtitle,
+.cards-carousel[class*='cc-berry-'] .cc-cta,
+.cards-carousel[class*='cc-teal-'] .cc-title,
+.cards-carousel[class*='cc-teal-'] .cc-subtitle,
+.cards-carousel[class*='cc-teal-'] .cc-cta,
+.cards-carousel[class*='cc-orange-'] .cc-title,
+.cards-carousel[class*='cc-orange-'] .cc-subtitle,
+.cards-carousel[class*='cc-orange-'] .cc-cta {
+    color: inherit;
+}

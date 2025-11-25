@@ -24,10 +24,19 @@ export default function decorate(block) {
 
   rows.forEach((row) => {
     const cells = [...row.children];
-    const card = document.createElement('article');
-    card.className = 'cc-card';
-
     const badgeText = cells[0]?.textContent.trim();
+    const mediaCell = cells[1];
+    const titleText = cells[2]?.textContent.trim();
+    const subtitleCell = cells[3];
+    const subtitleText = subtitleCell?.textContent.trim();
+    const ctaLink = subtitleCell?.querySelector('a');
+    const card = document.createElement(ctaLink ? 'a' : 'article');
+    card.className = 'cc-card';
+    if (ctaLink) {
+      card.href = ctaLink.href;
+      card.setAttribute('aria-label', ctaLink.textContent || titleText || badgeText || 'Card link');
+    }
+
     if (badgeText) {
       const badge = document.createElement('span');
       badge.className = 'cc-badge';
@@ -35,15 +44,14 @@ export default function decorate(block) {
       card.append(badge);
     }
 
-    const mediaCell = cells[1];
-    if (mediaCell && mediaCell.textContent.trim()) {
+    const hasMedia = mediaCell && mediaCell.querySelector('img, picture, video, source');
+    if (hasMedia) {
       const media = document.createElement('div');
       media.className = 'cc-media';
       while (mediaCell.firstChild) media.append(mediaCell.firstChild);
       card.append(media);
     }
 
-    const titleText = cells[2]?.textContent.trim();
     if (titleText) {
       const title = document.createElement('h3');
       title.className = 'cc-title';
@@ -51,22 +59,11 @@ export default function decorate(block) {
       card.append(title);
     }
 
-    const subtitleText = cells[3]?.textContent.trim();
     if (subtitleText) {
       const subtitle = document.createElement('p');
       subtitle.className = 'cc-subtitle';
       subtitle.textContent = subtitleText;
       card.append(subtitle);
-    }
-
-    const subtitleCell = cells[3];
-    const ctaLink = subtitleCell?.querySelector('a');
-    if (ctaLink) {
-      const cta = document.createElement('a');
-      cta.className = 'cc-cta';
-      cta.href = ctaLink.href;
-      cta.textContent = ctaLink.textContent || 'Learn more';
-      card.append(cta);
     }
 
     track.append(card);

@@ -14,7 +14,9 @@
 }
 
 .cards-carousel .cc-card {
-    min-width: 220px;
+    position: relative;
+    min-width: 210px;
+    height: auto;
     background: #f7f2ee;
     border-radius: 12px;
     padding: 12px;
@@ -23,14 +25,20 @@
     flex-direction: column;
     gap: 8px;
     box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
 }
 
 .cards-carousel .cc-badge {
+    position: absolute;
+    top: 5px;
+    left: 5px;
     align-self: flex-start;
-    background: #f43f5e;
+    background: #cc0058;
     color: #fff;
-    border-radius: 12px;
-    padding: 4px 10px;
+    border-radius: 4px;
+    padding: 0 4px;
     font-size: 12px;
     font-weight: 600;
 }
@@ -39,13 +47,25 @@
 .cards-carousel .cc-media img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     border-radius: 8px;
+}
+
+.cards-carousel .cc-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 175px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .cards-carousel .cc-title {
     margin: 0;
     font-size: 16px;
+    line-height: 1.1;
+    font-weight: 500;
 }
 
 .cards-carousel .cc-subtitle {

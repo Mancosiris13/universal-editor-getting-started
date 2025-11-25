@@ -1,7 +1,6 @@
 .cards-carousel {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 12px;
+    position: relative;
+    display: flex;
     align-items: center;
 }
 
@@ -9,25 +8,35 @@
     display: flex;
     gap: 12px;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
+    scroll-behavior: smooth;
     padding: 8px 0;
+    width: 100%;
+    cursor: grab;
 }
 
 .cards-carousel .cc-card {
     position: relative;
-    min-width: 210px;
-    height: auto;
+    width: 250px;
+    min-width: 250px;
+    max-width: 250px;
     background: #f7f2ee;
     border-radius: 12px;
-    padding: 12px;
+    padding: 12px 12px 25px;
     scroll-snap-align: start;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
     text-decoration: none;
     color: inherit;
     cursor: pointer;
+    margin-bottom: 10px;
+    user-select: none;
+}
+
+.cards-carousel :where(.cc-card:visited, .cc-card:hover, .cc-card:focus, .cc-card:active) {
+    text-decoration: none;
+    color: inherit;
 }
 
 .cards-carousel .cc-badge {
@@ -50,6 +59,7 @@
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
+    pointer-events: none;
 }
 
 .cards-carousel .cc-media {
@@ -59,6 +69,7 @@
     height: 175px;
     width: 100%;
     overflow: hidden;
+    user-select: none;
 }
 
 .cards-carousel .cc-title {
@@ -66,6 +77,12 @@
     font-size: 16px;
     line-height: 1.1;
     font-weight: 500;
+}
+
+.cards-carousel .cc-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
 }
 
 .cards-carousel .cc-subtitle {
@@ -82,12 +99,31 @@
 }
 
 .cards-carousel .cc-btn {
-    width: 32px;
-    height: 32px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    border: 1px solid #ddd;
+    border: 1px solid currentcolor;
     background: #fff;
+    color: #111;
     cursor: pointer;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 12%);
+    display: grid;
+    place-items: center;
+    z-index: 1;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.cards-carousel .cc-btn-prev {
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+.cards-carousel .cc-btn-next {
+    right: 0;
+    transform: translate(50%, -50%);
 }
 
 .cards-carousel .cc-btn:focus-visible {
@@ -95,13 +131,19 @@
     outline-offset: 2px;
 }
 
+.cards-carousel .cc-btn:hover {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+}
+
 .cards-carousel .cc-btn::after {
     content: '';
     display: inline-block;
     width: 8px;
     height: 8px;
-    border-top: 2px solid #333;
-    border-right: 2px solid #333;
+    border-top: 2px solid currentcolor;
+    border-right: 2px solid currentcolor;
     transform: rotate(45deg);
 }
 
@@ -112,6 +154,14 @@
 .cards-carousel .cc-btn:disabled {
     opacity: 0.4;
     cursor: not-allowed;
+}
+
+.cards-carousel .cc-track.cc-dragging {
+    cursor: grabbing;
+}
+
+.cards-carousel :where(.cc-track.cc-dragging) .cc-card {
+    pointer-events: none;
 }
 
 .cards-carousel.cc-compact .cc-card {

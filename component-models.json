@@ -41,6 +41,31 @@
      ]
   },
   {
+    "id": "cards-carousel",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Style",
+        "description": "Optional style modifier",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Compact",
+            "value": "cc-compact"
+          },
+          {
+            "name": "Light Background",
+            "value": "cc-light"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "image",
     "fields": [
       {

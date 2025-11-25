@@ -1,0 +1,105 @@
+.cards-carousel {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    align-items: center;
+}
+
+.cards-carousel .cc-track {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 8px 0;
+}
+
+.cards-carousel .cc-card {
+    min-width: 220px;
+    background: #f7f2ee;
+    border-radius: 12px;
+    padding: 12px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
+}
+
+.cards-carousel .cc-badge {
+    align-self: flex-start;
+    background: #f43f5e;
+    color: #fff;
+    border-radius: 12px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.cards-carousel .cc-media picture,
+.cards-carousel .cc-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.cards-carousel .cc-title {
+    margin: 0;
+    font-size: 16px;
+}
+
+.cards-carousel .cc-subtitle {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.cards-carousel .cc-cta {
+    margin-top: auto;
+    color: #0f62fe;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.cards-carousel .cc-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+}
+
+.cards-carousel .cc-btn:focus-visible {
+    outline: 2px solid #0f62fe;
+    outline-offset: 2px;
+}
+
+.cards-carousel .cc-btn::after {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid #333;
+    border-right: 2px solid #333;
+    transform: rotate(45deg);
+}
+
+.cards-carousel .cc-btn-prev::after {
+    transform: rotate(-135deg);
+}
+
+.cards-carousel .cc-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.cards-carousel.cc-compact .cc-card {
+    min-width: 180px;
+    padding: 10px;
+    gap: 6px;
+}
+
+.cards-carousel.cc-light .cc-card {
+    background: #fff;
+}

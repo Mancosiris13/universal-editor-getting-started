@@ -238,7 +238,52 @@
   },
   {
     "id": "inner-fwcbwcc-cards-carousel",
-    "fields": []
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Style",
+        "description": "Optional style modifier",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Compact",
+            "value": "cc-compact"
+          },
+          {
+            "name": "Light Background",
+            "value": "cc-light"
+          },
+          {
+            "name": "Berry Bliss + Black Text",
+            "value": "cc-berry-ink"
+          },
+          {
+            "name": "Berry Bliss + White Text",
+            "value": "cc-berry-white"
+          },
+          {
+            "name": "Teal Splash + Black Text",
+            "value": "cc-teal-ink"
+          },
+          {
+            "name": "Teal Splash + White Text",
+            "value": "cc-teal-white"
+          },
+          {
+            "name": "Orange Squeeze + Black Text",
+            "value": "cc-orange-ink"
+          },
+          {
+            "name": "Orange Squeeze + White Text",
+            "value": "cc-orange-white"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "image",

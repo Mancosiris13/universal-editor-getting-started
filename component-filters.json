@@ -1,15 +1,11 @@
 [
   {
     "id": "main",
-    "components": [
-      "section"
-    ]
+    "components": ["section"]
   },
   {
     "id": "columns-main",
-    "components": [
-      "columns-section"
-    ]
+    "components": ["columns-section"]
   },
   {
     "id": "section",
@@ -23,6 +19,7 @@
       "columns",
       "cards-carousel",
       "full-width-compact-banner-with-buttons",
+      "full-width-compact-banner-with-cards-carousel",
       "fragment",
       "product-teaser",
       "product-recommendations",
@@ -80,17 +77,7 @@
   },
   {
     "id": "mini-cart-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-mini-cart"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-mini-cart"]
   },
   {
     "id": "cart-section",
@@ -133,87 +120,27 @@
   },
   {
     "id": "checkout-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-checkout"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-checkout"]
   },
   {
     "id": "search-order-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-search-order"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-search-order"]
   },
   {
     "id": "search-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "product-list-page"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "product-list-page"]
   },
   {
     "id": "login-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-login"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-login"]
   },
   {
     "id": "forgot-password-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-forgot-password"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-forgot-password"]
   },
   {
     "id": "create-account-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-create-account"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-create-account"]
   },
   {
     "id": "account-section",
@@ -302,17 +229,7 @@
   },
   {
     "id": "order-status-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-search-order"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-search-order"]
   },
   {
     "id": "return-details-section",
@@ -334,91 +251,42 @@
   },
   {
     "id": "create-return-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-create-return"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-create-return"]
   },
   {
     "id": "confirm-account-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-confirm-account"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-confirm-account"]
   },
   {
     "id": "create-password-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-create-password"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-create-password"]
   },
   {
     "id": "wishlist-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-wishlist"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-wishlist"]
   },
   {
     "id": "cards",
-    "components": [
-      "card"
-    ]
+    "components": ["card"]
   },
   {
     "id": "cards-carousel",
-    "components": [
-      "cards-carousel-card"
-    ]
+    "components": ["cards-carousel-card"]
   },
   {
     "id": "full-width-compact-banner-with-buttons",
-    "components": [
-      "full-width-compact-banner-with-buttons-link-button"
-    ]
+    "components": ["full-width-compact-banner-with-buttons-link-button"]
+  },
+  {
+    "id": "full-width-compact-banner-with-cards-carousel",
+    "components": ["cards-carousel"]
   },
   {
     "id": "columns",
-    "components": [
-      "column"
-    ]
+    "components": ["column"]
   },
   {
     "id": "column",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title"
-    ]
+    "components": ["text", "image", "button", "title"]
   }
 ]

@@ -1,6 +1,7 @@
 .cards-carousel-container {
-    margin: -70px auto 0 auto !important;
+    margin: -70px auto 0 !important;
 }
+
 .cards-carousel {
     position: relative;
     display: flex;

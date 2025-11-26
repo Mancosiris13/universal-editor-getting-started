@@ -181,6 +181,50 @@
     ]
   },
   {
+    "id": "full-width-compact-banner-with-cards-carousel",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Style",
+        "description": "Dominant color palette",
+        "options": [
+          {
+            "name": "White Dominant",
+            "value": "cc-white-domination"
+          },
+          {
+            "name": "Black Dominant",
+            "value": "cc-black-domination"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "background-color",
+        "label": "Background Color",
+        "description": "Hex color (e.g. #ff0099)"
+      },
+      {
+        "component": "text",
+        "name": "badge",
+        "label": "Badge Text",
+        "description": "Optional badge label"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "description": "Optional description text"
+      }
+    ]
+  },
+  {
     "id": "image",
     "fields": [
       {

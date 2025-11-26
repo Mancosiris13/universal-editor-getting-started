@@ -223,9 +223,16 @@
         "description": "Optional description text"
       },
       {
+        "component": "text",
+        "name": "cta-label",
+        "label": "Button Text",
+        "description": "Text shown inside the CTA button"
+      },
+      {
         "component": "aem-content",
-        "name": "link",
-        "label": "Button Link"
+        "name": "cta-link",
+        "label": "Button Link",
+        "description": "Destination URL for the CTA button"
       }
     ]
   },

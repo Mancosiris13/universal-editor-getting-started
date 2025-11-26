@@ -221,6 +221,11 @@
         "name": "description",
         "label": "Description",
         "description": "Optional description text"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Button Link"
       }
     ]
   },

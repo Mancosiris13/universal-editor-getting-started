@@ -44,6 +44,8 @@ export default function decorate(block) {
   const ctaAnchor = getLink(ctaCell) || (ctaCell?.classList?.contains('button-container') ? ctaCell.querySelector('a') : null);
 
   const remainingRows = rows.slice(6);
+  const existingCarousel = block.querySelector('.inner-fwcbwcc-cards-carousel');
+  if (existingCarousel) existingCarousel.remove();
 
   block.textContent = '';
   block.classList.add('fwcbwcc');
@@ -88,7 +90,15 @@ export default function decorate(block) {
 
   wrapper.append(content);
 
-  remainingRows.forEach((row) => wrapper.append(row));
+  const carouselSlot = document.createElement('div');
+  carouselSlot.className = 'fwcbwcc-carousel-slot';
+  if (existingCarousel) {
+    carouselSlot.append(existingCarousel);
+  } else {
+    remainingRows.forEach((row) => carouselSlot.append(row));
+  }
+
+  wrapper.append(carouselSlot);
 
   block.append(wrapper);
 }

@@ -238,13 +238,7 @@
   },
   {
     "id": "inner-fwcbwcc-cards-carousel",
-    "fields": [
-      {
-        "component": "text",
-        "name": "title",
-        "label": "Title"
-      }
-    ]
+    "fields": []
   },
   {
     "id": "image",

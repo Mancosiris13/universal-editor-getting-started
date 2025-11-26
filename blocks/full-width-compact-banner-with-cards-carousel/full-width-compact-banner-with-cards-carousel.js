@@ -44,8 +44,7 @@ export default function decorate(block) {
   const ctaAnchor = getLink(ctaCell) || (ctaCell?.classList?.contains('button-container') ? ctaCell.querySelector('a') : null);
 
   const remainingRows = rows.slice(6);
-  const existingCarousel = block.querySelector('.inner-fwcbwcc-cards-carousel');
-  if (existingCarousel) existingCarousel.remove();
+  const existingCarousel = block.querySelector('.inner-fwcbwcc-cards-carousel, .cards-carousel') || document.querySelector('.inner-fwcbwcc-cards-carousel, .inner-fwcbwcc-cards-carousel-container .cards-carousel');
 
   block.textContent = '';
   block.classList.add('fwcbwcc');
@@ -92,10 +91,18 @@ export default function decorate(block) {
 
   const carouselSlot = document.createElement('div');
   carouselSlot.className = 'fwcbwcc-carousel-slot';
-  if (existingCarousel) {
-    carouselSlot.append(existingCarousel);
-  } else {
-    remainingRows.forEach((row) => carouselSlot.append(row));
+  let carousel = existingCarousel;
+
+  if (!carousel) {
+    carousel = remainingRows.find((row) => row.classList.contains('cards-carousel') || row.classList.contains('inner-fwcbwcc-cards-carousel'));
+  }
+
+  if (carousel) {
+    carouselSlot.append(carousel);
+    // redecorate in runtime to restore classes/behaviour
+    import('../inner-fwcbwcc-cards-carousel/inner-fwcbwcc-cards-carousel.js')
+      .then(({ default: decorateInner }) => decorateInner(carousel))
+      .catch(() => {});
   }
 
   wrapper.append(carouselSlot);

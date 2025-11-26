@@ -1,7 +1,8 @@
 export default function decorate(block) {
-  if (window.xwalk?.isAuthorEnv) {
+  const isUE = document.documentElement.hasAttribute('data-aue-version');
+  if (window.xwalk?.isAuthorEnv || isUE) {
+    // keep DOM intact but still set class for authoring
     block.classList.add('fwcbwcc');
-    return;
   }
 
   const rows = [...block.querySelectorAll(':scope > div')];

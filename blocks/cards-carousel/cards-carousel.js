@@ -77,6 +77,9 @@ export default function decorate(block) {
       card.append(textWrap);
     }
 
+    // skip adding completely empty cards
+    if (!card.childElementCount) return;
+
     track.append(card);
   });
 

@@ -15,18 +15,32 @@ export default function decorate(block) {
     return direct;
   };
 
-  // First rows hold config: 0 palette, 1 bg color, 2 badge, 3 title, 4 description, 5 CTA
   const configRows = rows.slice(0, 6);
   const cells = configRows.flatMap(extractCells).filter(Boolean);
+  const textVals = cells.map((c) => c?.textContent?.trim()).filter(Boolean);
+  const hexLike = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i;
+
   if (!cells.length) return;
-  const paletteClass = cells[0]?.textContent?.trim();
-  const bgColor = cells[1]?.textContent?.trim();
-  const badgeText = cells[2]?.textContent?.trim();
-  const titleText = cells[3]?.textContent?.trim();
-  const descriptionHTML = cells[4]?.innerHTML || '';
+
+  let paletteClass = textVals[0] || '';
+  let bgColor = textVals[1] || '';
+  let badgeText = textVals[2] || '';
+  let titleText = textVals[3] || '';
+  let descriptionHTML = cells[4]?.innerHTML || '';
+
+  // If style is not in cells[0] (e.g., first value is hex), shift values
+  if (paletteClass && hexLike.test(paletteClass)) {
+    bgColor = paletteClass;
+    paletteClass = '';
+    badgeText = textVals[1] || '';
+    titleText = textVals[2] || '';
+    descriptionHTML = cells[3]?.innerHTML || '';
+  }
+
+  const ctaLabel = cells[4]?.innerHTML || '';
   const ctaCell = cells[5];
-  const ctaLink = ctaCell?.querySelector('a');
-  const ctaLabel = ctaCell ? ctaCell.textContent.trim() : '';
+  const getLink = (cell) => cell?.querySelector('a');
+  const ctaAnchor = getLink(ctaCell) || (ctaCell?.classList?.contains('button-container') ? ctaCell.querySelector('a') : null);
 
   const remainingRows = rows.slice(6);
 
@@ -62,10 +76,10 @@ export default function decorate(block) {
     content.append(desc);
   }
 
-  if (ctaLink?.href && ctaLabel) {
+  if (ctaAnchor?.href && ctaLabel) {
     const cta = document.createElement('a');
     cta.className = 'fwcbwcc-cta';
-    cta.href = ctaLink.href;
+    cta.href = ctaAnchor.href;
     cta.textContent = ctaLabel;
     cta.setAttribute('draggable', 'false');
     content.append(cta);

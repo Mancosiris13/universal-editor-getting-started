@@ -279,7 +279,11 @@
   },
   {
     "id": "full-width-compact-banner-with-cards-carousel",
-    "components": ["cards-carousel"]
+    "components": ["inner-fwcbwcc-cards-carousel"]
+  },
+  {
+    "id": "inner-fwcbwcc-cards-carousel",
+    "components": ["cards-carousel-card"]
   },
   {
     "id": "columns",

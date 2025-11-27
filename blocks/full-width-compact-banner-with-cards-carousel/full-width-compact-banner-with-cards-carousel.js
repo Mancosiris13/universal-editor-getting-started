@@ -101,7 +101,16 @@ export default function decorate(block) {
     carouselSlot.append(carousel);
     // redecorate in runtime to restore classes/behaviour
     import('../inner-fwcbwcc-cards-carousel/inner-fwcbwcc-cards-carousel.js')
-      .then(({ default: decorateInner }) => decorateInner(carousel))
+      .then(({ default: decorateInner }) => {
+        decorateInner(carousel);
+        const removeNav = () => {
+          carousel.querySelectorAll('.cc-btn-prev, .cc-btn-next').forEach((btn) => btn.remove());
+        };
+        requestAnimationFrame(() => {
+          removeNav();
+          setTimeout(removeNav, 50);
+        });
+      })
       .catch(() => {});
   }
 

@@ -50,6 +50,10 @@
     max-width: 380px;
 }
 
+.fwcbwcc-carousel-slot {
+    max-width: 1200px;
+}
+
 .fwcbwcc-badge {
     align-self: flex-start;
     background: var(--fwcbwcc-badge-bg);

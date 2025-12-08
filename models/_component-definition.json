@@ -45,6 +45,9 @@
         },
         {
           "...": "../blocks/content-fragment/_*.json#/definitions"
+        },
+        {
+          "...": "../blocks/main-banner/_*.json#/definitions"
         }
       ]
     },

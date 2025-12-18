@@ -3,11 +3,6 @@ import htm from '../../scripts/htm.js';
 
 const html = htm.bind(h);
 
-function Description({ descriptionHTML }) {
-  if (!descriptionHTML) return null;
-  return html` <div className="main-banner__description" dangerouslySetInnerHTML=${{ __html: descriptionHTML }} /> `;
-}
-
 function Cta({ ctaLabel, ctaHref, isWrapped }) {
   if (!ctaLabel) return null;
   if (isWrapped) {
@@ -18,13 +13,7 @@ function Cta({ ctaLabel, ctaHref, isWrapped }) {
 }
 
 export default function MainBanner({
-  image,
-  imageMobile,
-  imageAlt,
-  title,
-  descriptionHTML,
-  ctaLabel,
-  ctaHref,
+  image, imageMobile, imageAlt, title, descriptionHTML, ctaLabel, ctaHref,
 }) {
   const hasLink = Boolean(ctaHref);
 
@@ -33,14 +22,13 @@ export default function MainBanner({
       ${image || imageMobile
     ? html`
             <picture className="main-banner__image">
-              <source srcset=${imageMobile || image} media="(max-width: 900px)" />
+              <source srcset=${imageMobile || image} media="(max-width: 950px)" />
               <img src=${image || imageMobile} alt=${imageAlt || ''} loading="lazy" />
             </picture>
           `
     : null}
       <div className="main-banner__body">
-        ${title ? html`<h2 className="main-banner__title">${title}</h2>` : null}
-        <${Description} descriptionHTML=${descriptionHTML} />
+        ${title ? html`<h2 className="main-banner__title">${title}</h2>` : null} ${descriptionHTML ? html`<p className="main-banner__description">${descriptionHTML}</p> ` : null}
         <${Cta} ctaLabel=${ctaLabel} ctaHref=${hasLink ? null : ctaHref} isWrapped=${hasLink} />
       </div>
     </section>

@@ -13,13 +13,8 @@ export default function decorate(block) {
   }
 
   const cells = [...block.children];
-  const [
-    imgCell,
-    altOrTitleCell,
-    maybeDescriptionCell,
-    maybeCtaLabelCell,
-    maybeCtaLinkCell,
-  ] = cells;
+  // eslint-disable-next-line max-len
+  const [imgCell, altOrTitleCell, maybeDescriptionCell, maybeCtaLabelCell, maybeCtaLinkCell] = cells;
 
   const imgEl = imgCell?.querySelector('img');
 
@@ -44,7 +39,7 @@ export default function decorate(block) {
     imageMobile: imageMobileOptimized,
     imageAlt: getText(altCell) || imgEl?.alt || '',
     title: getText(titleCell),
-    descriptionHTML: descriptionCell?.innerHTML?.trim() || '',
+    descriptionHTML: descriptionCell?.innerText?.trim() || '',
     ctaLabel: getText(ctaLabelCell),
     ctaHref: ctaLink?.href || '',
   };

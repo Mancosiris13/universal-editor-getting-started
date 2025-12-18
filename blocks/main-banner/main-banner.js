@@ -1,35 +1,8 @@
 import { h, render } from '@dropins/tools/preact.js';
+import MainBanner from './render.js';
 
-function Banner({
-  imgSrc, imgAlt, title, descriptionHTML, ctaLabel, ctaHref,
-}) {
-  const media = imgSrc ? h('div', { className: 'main-banner__media' }, h('img', { src: imgSrc, alt: imgAlt || '' })) : null;
-
-  const body = h(
-    'div',
-    { className: 'main-banner__body' },
-    [
-      title && h('h2', { className: 'main-banner__title' }, title),
-      descriptionHTML
-        && h('div', {
-          className: 'main-banner__description',
-          dangerouslySetInnerHTML: { __html: descriptionHTML },
-        }),
-      ctaLabel
-        && ctaHref
-        && h(
-          'a',
-          {
-            className: 'main-banner__cta',
-            href: ctaHref,
-            draggable: 'false',
-          },
-          ctaLabel,
-        ),
-    ].filter(Boolean),
-  );
-
-  return h('section', { className: 'main-banner' }, [media, body].filter(Boolean));
+function getText(el) {
+  return el?.textContent?.trim() || '';
 }
 
 export default function decorate(block) {
@@ -39,22 +12,36 @@ export default function decorate(block) {
   }
 
   const cells = [...block.children];
-  const [imgCell, titleCell, descriptionCell, ctaLabelCell, ctaLinkCell] = cells;
+  const [
+    imgCell,
+    altOrTitleCell,
+    maybeDescriptionCell,
+    maybeCtaLabelCell,
+    maybeCtaLinkCell,
+  ] = cells;
 
   const imgEl = imgCell?.querySelector('img');
-  const ctaLink = ctaLinkCell?.querySelector('a');
+
+  // Some authoring outputs include a dedicated Alt cell; others only set the img alt.
+  const hasExplicitAlt = cells.length >= 6;
+  const altCell = hasExplicitAlt ? altOrTitleCell : null;
+  const titleCell = hasExplicitAlt ? cells[2] : altOrTitleCell;
+  const descriptionCell = hasExplicitAlt ? cells[3] : maybeDescriptionCell;
+  const ctaLabelCell = hasExplicitAlt ? cells[4] : maybeCtaLabelCell;
+  const ctaLinkCell = hasExplicitAlt ? cells[5] : maybeCtaLinkCell;
+
+  // Link may be in the link cell or embedded in the label cell
+  const ctaLink = ctaLinkCell?.querySelector('a') || ctaLabelCell?.querySelector('a');
 
   const props = {
-    imgSrc: imgEl?.src || '',
-    imgAlt: imgEl?.alt || '',
-    title: titleCell?.textContent?.trim() || '',
+    image: imgEl?.src || '',
+    imageAlt: getText(altCell) || imgEl?.alt || '',
+    title: getText(titleCell),
     descriptionHTML: descriptionCell?.innerHTML?.trim() || '',
-    ctaLabel: ctaLabelCell?.textContent?.trim() || '',
+    ctaLabel: getText(ctaLabelCell),
     ctaHref: ctaLink?.href || '',
   };
 
   block.textContent = '';
-  const root = document.createElement('div');
-  block.append(root);
-  render(h(Banner, props), root);
+  render(h(MainBanner, props), block);
 }

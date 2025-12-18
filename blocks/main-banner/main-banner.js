@@ -6,9 +6,9 @@ function getText(el) {
 }
 
 export default function decorate(block) {
+  // Keep the block rendered in author as well so styles match UE/runtime.
   if (window.xwalk?.isAuthorEnv || document.documentElement.hasAttribute('data-aue-version')) {
     block.classList.add('main-banner--author');
-    return;
   }
 
   const cells = [...block.children];

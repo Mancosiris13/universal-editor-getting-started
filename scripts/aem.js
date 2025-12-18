@@ -187,6 +187,45 @@ function toCamelCase(name) {
 }
 
 /**
+ * Returns an optimized media URL with optional width/format/optimization params.
+ * @param {string} url The source URL.
+ * @param {object} options Options.
+ * @param {number|string} [options.width] Desired width; appended if missing or replaced if present.
+ * @param {string} [options.format=webp] Desired format if source is jpg/jpeg/png.
+ * @param {boolean} [options.optimize=true] Whether to enforce optimize=medium when missing.
+ * @returns {string} Optimized URL.
+ */
+function generateOptimizedImageUrl(url, { width, format = 'webp', optimize = true } = {}) {
+  if (!url) return '';
+  let updatedUrl = url;
+
+  const widthVal = width && Number(width);
+  if (widthVal) {
+    if (updatedUrl.includes('width=')) {
+      updatedUrl = updatedUrl.replace(/width=\d+/, `width=${widthVal}`);
+    } else {
+      const sep = updatedUrl.includes('?') ? '&' : '?';
+      updatedUrl = `${updatedUrl}${sep}width=${widthVal}`;
+    }
+  }
+
+  if (format === 'webp' && /\.(jpg|jpeg|png)/i.test(updatedUrl)) {
+    updatedUrl = updatedUrl.replace(/\.(jpg|jpeg|png)/i, '.webp');
+    if (updatedUrl.match(/format=\w+/)) {
+      updatedUrl = updatedUrl.replace(/format=\w+/, 'format=webp');
+    } else {
+      updatedUrl += '&format=webp';
+    }
+  }
+
+  if (optimize && !/optimize=\w+/.test(updatedUrl)) {
+    updatedUrl += '&optimize=medium';
+  }
+
+  return updatedUrl;
+}
+
+/**
  * Extracts the config from a block.
  * @param {Element} block The block element
  * @returns {object} The block config
@@ -713,4 +752,5 @@ export {
   toClassName,
   waitForFirstImage,
   wrapTextNodes,
+  generateOptimizedImageUrl,
 };

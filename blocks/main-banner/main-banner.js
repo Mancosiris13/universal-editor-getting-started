@@ -1,4 +1,5 @@
 import { h, render } from '@dropins/tools/preact.js';
+import { generateOptimizedImageUrl } from '../../scripts/aem.js';
 import MainBanner from './render.js';
 
 function getText(el) {
@@ -33,8 +34,14 @@ export default function decorate(block) {
   // Link may be in the link cell or embedded in the label cell
   const ctaLink = ctaLinkCell?.querySelector('a') || ctaLabelCell?.querySelector('a');
 
+  const imageWidth = Number(imgEl?.width) || 1440;
+  const rawImage = imgEl?.src || '';
+  const imageDesktopOptimized = generateOptimizedImageUrl(rawImage, { width: imageWidth });
+  const imageMobileOptimized = generateOptimizedImageUrl(rawImage, { width: 900 });
+
   const props = {
-    image: imgEl?.src || '',
+    image: imageDesktopOptimized,
+    imageMobile: imageMobileOptimized,
     imageAlt: getText(altCell) || imgEl?.alt || '',
     title: getText(titleCell),
     descriptionHTML: descriptionCell?.innerHTML?.trim() || '',

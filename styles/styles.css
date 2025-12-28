@@ -397,7 +397,7 @@ main > .section {
 main > .section > div {
     max-width: 1360px;
     margin: auto;
-    padding: 0 var(--spacing-medium);
+    padding: 0;
 }
 
 main > .section:first-of-type {

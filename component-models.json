@@ -241,16 +241,23 @@
     "fields": [
       {
         "component": "reference",
-        "valueType": "string",
         "name": "image",
-        "label": "Image",
+        "label": "Desktop Image",
+        "valueType": "string",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "name": "imageMobile",
+        "label": "Mobile Image",
+        "valueType": "string",
         "multi": false
       },
       {
         "component": "text",
+        "name": "string",
+        "label": "Alt text",
         "valueType": "string",
-        "name": "imageAlt",
-        "label": "Alt",
         "value": ""
       },
       {

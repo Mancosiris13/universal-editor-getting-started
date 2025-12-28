@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { h, render } from '@dropins/tools/preact.js';
 import { generateOptimizedImageUrl } from '../../scripts/aem.js';
 import MainBanner from './render.js';
@@ -13,31 +14,30 @@ export default function decorate(block) {
   }
 
   const cells = [...block.children];
-  // eslint-disable-next-line max-len
-  const [imgCell, altOrTitleCell, maybeDescriptionCell, maybeCtaLabelCell, maybeCtaLinkCell] = cells;
+  const desktopImgCell = cells[0];
+  const mobileImgEl = cells[1]?.querySelector('img');
+  const altCellIndex = 2;
+  const altCell = cells[altCellIndex];
+  const titleCell = cells[altCellIndex + 1];
+  const descriptionCell = cells[altCellIndex + 2];
+  const ctaLabelCell = cells[altCellIndex + 3];
+  const ctaLinkCell = cells[altCellIndex + 4];
 
-  const imgEl = imgCell?.querySelector('img');
-
-  // Some authoring outputs include a dedicated Alt cell; others only set the img alt.
-  const hasExplicitAlt = cells.length >= 6;
-  const altCell = hasExplicitAlt ? altOrTitleCell : null;
-  const titleCell = hasExplicitAlt ? cells[2] : altOrTitleCell;
-  const descriptionCell = hasExplicitAlt ? cells[3] : maybeDescriptionCell;
-  const ctaLabelCell = hasExplicitAlt ? cells[4] : maybeCtaLabelCell;
-  const ctaLinkCell = hasExplicitAlt ? cells[5] : maybeCtaLinkCell;
+  const imgEl = desktopImgCell?.querySelector('img');
 
   // Link may be in the link cell or embedded in the label cell
   const ctaLink = ctaLinkCell?.querySelector('a') || ctaLabelCell?.querySelector('a');
 
   const imageWidth = Number(imgEl?.width) || 1440;
   const rawImage = imgEl?.src || '';
+  const rawImageMobile = mobileImgEl?.src || rawImage;
   const imageDesktopOptimized = generateOptimizedImageUrl(rawImage, { width: imageWidth });
-  const imageMobileOptimized = generateOptimizedImageUrl(rawImage, { width: 900 });
+  const imageMobileOptimized = generateOptimizedImageUrl(rawImageMobile, { width: 900 });
 
   const props = {
     image: imageDesktopOptimized,
     imageMobile: imageMobileOptimized,
-    imageAlt: getText(altCell) || imgEl?.alt || '',
+    imageAlt: getText(altCell) || 'Banner con imagen',
     title: getText(titleCell),
     descriptionHTML: descriptionCell?.innerText?.trim() || '',
     ctaLabel: getText(ctaLabelCell),

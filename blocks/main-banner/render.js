@@ -18,20 +18,22 @@ export default function MainBanner({
   const hasLink = Boolean(ctaHref);
 
   const section = html`
-    <section className="main-banner" aria-label=${imageAlt || undefined}>
-      ${image || imageMobile
+    <div className="main-banner" aria-label=${imageAlt || undefined}>
+      <div clasName="main-banner__content-wrapper">
+        ${image || imageMobile
     ? html`
-            <picture className="main-banner__image">
-              <source srcset=${imageMobile || image} media="(max-width: 950px)" />
-              <img src=${image || imageMobile} alt=${imageAlt || ''} loading="lazy" />
-            </picture>
-          `
+              <picture className="main-banner__image">
+                <source srcset=${imageMobile || image} media="(max-width: 950px)" />
+                <img src=${image || imageMobile} alt=${imageAlt || ''} loading="lazy" />
+              </picture>
+            `
     : null}
-      <div className="main-banner__body">
-        ${title ? html`<h2 className="main-banner__title">${title}</h2>` : null} ${descriptionHTML ? html`<p className="main-banner__description">${descriptionHTML}</p> ` : null}
-        <${Cta} ctaLabel=${ctaLabel} ctaHref=${hasLink ? null : ctaHref} isWrapped=${hasLink} />
+        <div className="main-banner__body">
+          ${title ? html`<h2 className="main-banner__title">${title}</h2>` : null} ${descriptionHTML ? html`<p className="main-banner__description">${descriptionHTML}</p> ` : null}
+          <${Cta} ctaLabel=${ctaLabel} ctaHref=${hasLink ? null : ctaHref} isWrapped=${hasLink} />
+        </div>
       </div>
-    </section>
+    </div>
   `;
 
   if (hasLink) {

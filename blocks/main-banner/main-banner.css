@@ -6,6 +6,11 @@
     align-items: center;
     width: 100%;
     max-width: 1440px;
+    overflow: hidden;
+}
+
+.main-banner__content-wrapper {
+    position: absolute;
 }
 
 .main-banner__link {
@@ -18,7 +23,6 @@
 }
 
 .main-banner__image {
-    position: absolute;
     inset: 0;
     z-index: 0;
 }
@@ -31,10 +35,17 @@
 }
 
 .main-banner__body {
-    position: relative;
+    position: absolute;
     max-width: 640px;
     z-index: 1;
     left: 5%;
+    top: 20%;
+}
+
+@media (min-width: 900px) {
+    .main-banner__body {
+        top: 30%;
+    }
 }
 
 .main-banner__title {

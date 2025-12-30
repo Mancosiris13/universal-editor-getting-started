@@ -19,6 +19,7 @@
       "columns",
       "cards-carousel",
       "main-banner",
+      "hero-rail-card",
       "full-width-compact-banner-with-buttons",
       "full-width-compact-banner-with-cards-carousel",
       "inner-fwcbwcc-cards-carousel",
@@ -30,52 +31,15 @@
   },
   {
     "id": "enrichment-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "product-teaser",
-      "product-recommendations"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "product-teaser", "product-recommendations"]
   },
   {
     "id": "plp-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "enrichment",
-      "product-teaser",
-      "product-recommendations",
-      "product-list-page"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "enrichment", "product-teaser", "product-recommendations", "product-list-page"]
   },
   {
     "id": "pdp-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "enrichment",
-      "product-details",
-      "product-teaser",
-      "product-recommendations"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "enrichment", "product-details", "product-teaser", "product-recommendations"]
   },
   {
     "id": "mini-cart-section",
@@ -83,19 +47,7 @@
   },
   {
     "id": "cart-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-cart",
-      "product-teaser",
-      "product-recommendations"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-cart", "product-teaser", "product-recommendations"]
   },
   {
     "id": "order-details-section",
@@ -165,48 +117,15 @@
   },
   {
     "id": "orders-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-account-sidebar",
-      "commerce-orders-list"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-account-sidebar", "commerce-orders-list"]
   },
   {
     "id": "address-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-account-sidebar",
-      "commerce-addresses"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-account-sidebar", "commerce-addresses"]
   },
   {
     "id": "returns-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-account-sidebar",
-      "commerce-returns-list"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-account-sidebar", "commerce-returns-list"]
   },
   {
     "id": "account-order-details-section",
@@ -235,21 +154,7 @@
   },
   {
     "id": "return-details-section",
-    "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "cards",
-      "columns",
-      "fragment",
-      "commerce-return-header",
-      "commerce-order-status",
-      "commerce-shipping-status",
-      "commerce-customer-details",
-      "commerce-order-product-list"
-    ]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "commerce-return-header", "commerce-order-status", "commerce-shipping-status", "commerce-customer-details", "commerce-order-product-list"]
   },
   {
     "id": "create-return-section",

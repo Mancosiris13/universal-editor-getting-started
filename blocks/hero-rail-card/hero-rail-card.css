@@ -1,0 +1,116 @@
+.hrc__link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+
+.hrc {
+    position: relative;
+    width: min(100%, 460px);
+    aspect-ratio: 1.25;
+    min-height: 320px;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background: #f6f6f6;
+    box-shadow: 0 18px 50px rgb(0 0 0 / 15%);
+}
+
+.hrc__image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    height: 100%;
+}
+
+.hrc__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.hrc__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgb(0 0 0 / 55%) 0%, rgb(0 0 0 / 0%) 70%);
+    z-index: 1;
+}
+
+.hrc__body {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    padding: 26px 28px;
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.hrc__tag {
+    align-self: flex-start;
+    background: #fff;
+    color: #d4006a;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.hrc__title {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.hrc__description {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.45;
+    color: #f0f0f0;
+}
+
+.hrc__cta {
+    align-self: flex-start;
+    background: #0e0e0e;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    border: 1px solid #0e0e0e;
+    transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+.hrc__cta:hover,
+.hrc__cta:focus-visible {
+    background: #000;
+    box-shadow: 0 6px 18px rgb(0 0 0 / 25%);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+    .hrc {
+        aspect-ratio: 1.1;
+        min-height: 260px;
+    }
+
+    .hrc__body {
+        max-width: 80%;
+        padding: 20px 18px;
+        gap: 10px;
+    }
+
+    .hrc__title {
+        font-size: 20px;
+    }
+
+    .hrc__description {
+        font-size: 13px;
+    }
+}

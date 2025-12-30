@@ -1,0 +1,59 @@
+.carousel-hero-rail-cards {
+    position: relative;
+    width: 100%;
+    padding: 12px 0 32px;
+}
+
+.hrc-carousel-swiper {
+    width: 100%;
+}
+
+.hrc-carousel {
+    position: relative;
+}
+
+.hrc-carousel-swiper .swiper-wrapper {
+    align-items: stretch;
+}
+
+.hrc-carousel-swiper .swiper-slide {
+    display: flex;
+    justify-content: center;
+    width: min(90vw, 470px);
+}
+
+.hrc-carousel-swiper .hrc {
+    width: 100%;
+}
+
+.hrc-carousel-swiper .swiper-pagination-bullet {
+    background: #0f172a;
+    opacity: 0.25;
+}
+
+.hrc-carousel-swiper .swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+.hrc-carousel-swiper .swiper-button-prev,
+.hrc-carousel-swiper .swiper-button-next {
+    color: #0f172a;
+    text-shadow: 0 0 10px rgb(0 0 0 / 16%);
+}
+
+.hrc-carousel-swiper .inline-space {
+    margin-right: var(--space, 0);
+}
+
+.hrc-carousel-swiper:not(.swiper-ready) .swiper-button-prev,
+.hrc-carousel-swiper:not(.swiper-ready) .swiper-button-next,
+.hrc-carousel-swiper:not(.swiper-ready) .swiper-pagination {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .hrc-carousel-swiper .swiper-button-prev,
+    .hrc-carousel-swiper .swiper-button-next {
+        display: none;
+    }
+}

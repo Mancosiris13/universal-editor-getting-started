@@ -59,6 +59,7 @@
     "@dropins/storefront-recommendations": "~1.1.1",
     "@dropins/storefront-wishlist": "~2.0.1",
     "@dropins/tools": "~1.5.1",
-    "htm": "^3.1.1"
+    "htm": "^3.1.1",
+    "swiper": "^12.0.3"
   }
 }

@@ -341,6 +341,18 @@
     ]
   },
   {
+    "id": "carousel-hero-rail-cards",
+    "fields": [
+      {
+        "component": "text",
+        "name": "classes",
+        "label": "Additional Classes",
+        "valueType": "string",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "inner-fwcbwcc-cards-carousel",
     "fields": [
       {

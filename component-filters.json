@@ -19,6 +19,7 @@
       "columns",
       "cards-carousel",
       "main-banner",
+      "carousel-hero-rail-cards",
       "hero-rail-card",
       "full-width-compact-banner-with-buttons",
       "full-width-compact-banner-with-cards-carousel",
@@ -179,6 +180,10 @@
   {
     "id": "cards-carousel",
     "components": ["cards-carousel-card"]
+  },
+  {
+    "id": "carousel-hero-rail-cards",
+    "components": ["hero-rail-card"]
   },
   {
     "id": "full-width-compact-banner-with-buttons",

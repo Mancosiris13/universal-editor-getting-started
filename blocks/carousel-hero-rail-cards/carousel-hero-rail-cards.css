@@ -1,4 +1,4 @@
-Carousel-hero-rail-cards.css .carousel-hero-rail-cards {
+.carousel-hero-rail-cards {
     position: relative;
     width: 100%;
     padding: 12px 0 32px;
@@ -20,7 +20,7 @@ Carousel-hero-rail-cards.css .carousel-hero-rail-cards {
 .hrc-carousel-swiper .swiper-slide {
     display: flex;
     justify-content: center;
-    width: min(90vw, 470px);
+    width: min(90vw, 444px);
 }
 
 .hrc-carousel-swiper .hrc {
@@ -44,14 +44,14 @@ Carousel-hero-rail-cards.css .carousel-hero-rail-cards {
 .hrc-carousel .swiper-button-next {
     width: 44px;
     height: 44px;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgb(255 255 255 / 92%);
     border-radius: 50%;
     display: grid;
     place-items: center;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
     z-index: 999;
     cursor: pointer;
     border: 1px solid #e5e7eb;
@@ -64,11 +64,13 @@ Carousel-hero-rail-cards.css .carousel-hero-rail-cards {
 }
 
 .hrc-carousel .swiper-button-prev {
-    left: 12px;
+    left: 0;
+    transform: translate(-50%, -50%);
 }
 
 .hrc-carousel .swiper-button-next {
-    right: 12px;
+    right: 0;
+    transform: translate(50%, -50%);
 }
 
 .hrc-carousel .swiper-button-prev img,

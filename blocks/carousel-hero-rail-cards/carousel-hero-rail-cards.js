@@ -74,7 +74,7 @@ function buildSlide(row) {
     imageAlt: altCell?.textContent?.trim() || imgEl?.alt || '',
     tagLabel: tagCell?.textContent?.trim() || '',
     title: titleCell?.textContent?.trim() || '',
-    descriptionHTML: descriptionCell?.innerHTML?.trim() || '',
+    descriptionHTML: descriptionCell?.textContent?.trim() || '',
     ctaLabel: ctaLabelCell?.textContent?.trim() || '',
     ctaHref: ctaLink?.href || '',
   };

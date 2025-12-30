@@ -10,3 +10,4 @@ scripts/htm.js
 plugins/
 cypress/
 dompurify.min.js
+libs/swiper

@@ -1,4 +1,4 @@
-.carousel-hero-rail-cards {
+Carousel-hero-rail-cards.css .carousel-hero-rail-cards {
     position: relative;
     width: 100%;
     padding: 12px 0 32px;
@@ -14,6 +14,7 @@
 
 .hrc-carousel-swiper .swiper-wrapper {
     align-items: stretch;
+    display: flex;
 }
 
 .hrc-carousel-swiper .swiper-slide {
@@ -35,25 +36,61 @@
     opacity: 1;
 }
 
-.hrc-carousel-swiper .swiper-button-prev,
-.hrc-carousel-swiper .swiper-button-next {
-    color: #0f172a;
-    text-shadow: 0 0 10px rgb(0 0 0 / 16%);
-}
-
 .hrc-carousel-swiper .inline-space {
     margin-right: var(--space, 0);
 }
 
-.hrc-carousel-swiper:not(.swiper-ready) .swiper-button-prev,
-.hrc-carousel-swiper:not(.swiper-ready) .swiper-button-next,
-.hrc-carousel-swiper:not(.swiper-ready) .swiper-pagination {
+.hrc-carousel .swiper-button-prev,
+.hrc-carousel .swiper-button-next {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    z-index: 999;
+    cursor: pointer;
+    border: 1px solid #e5e7eb;
+}
+
+.hrc-carousel .swiper-button-prev::after,
+.hrc-carousel .swiper-button-next::after {
+    content: none !important;
+    background: none !important;
+}
+
+.hrc-carousel .swiper-button-prev {
+    left: 12px;
+}
+
+.hrc-carousel .swiper-button-next {
+    right: 12px;
+}
+
+.hrc-carousel .swiper-button-prev img,
+.hrc-carousel .swiper-button-next img {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+.hrc-carousel .swiper-button-prev img {
+    transform: rotate(180deg);
+}
+
+.hrc-carousel:not(.swiper-ready) .swiper-button-prev,
+.hrc-carousel:not(.swiper-ready) .swiper-button-next,
+.hrc-carousel:not(.swiper-ready) .swiper-pagination {
     display: none;
 }
 
 @media (max-width: 900px) {
-    .hrc-carousel-swiper .swiper-button-prev,
-    .hrc-carousel-swiper .swiper-button-next {
+    .hrc-carousel .swiper-button-prev,
+    .hrc-carousel .swiper-button-next {
         display: none;
     }
 }

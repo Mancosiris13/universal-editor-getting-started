@@ -47,7 +47,7 @@ function readConfig(row) {
     autoplay: parseBoolean(rawAutoplay, false),
     autoplayDelay: parseNumber(rawDelay, 6000),
     loop: parseBoolean(rawLoop, true),
-    centeredSlides: parseBoolean(rawCentered, true),
+    centeredSlides: parseBoolean(rawCentered, false),
   };
 }
 
@@ -92,7 +92,7 @@ export default async function decorate(block) {
     autoplay: false,
     autoplayDelay: 6000,
     loop: true,
-    centeredSlides: true,
+    centeredSlides: false,
   };
 
   let slideRows = rows;

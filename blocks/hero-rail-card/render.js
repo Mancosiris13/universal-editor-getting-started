@@ -18,22 +18,23 @@ export default function HeroRailCard({
   const hasLink = Boolean(ctaHref);
 
   const card = html`
-    <article className="hrc" aria-label=${imageAlt || title || undefined}>
-      ${image
+    <section className="hrc" aria-label=${imageAlt || title || undefined}>
+        <div className="hrc__content-wrapper">
+          ${image
     ? html`
-            <picture className="hrc__image">
-              <img src=${image} alt=${imageAlt || ''} loading="lazy" />
-            </picture>
-          `
+                <picture className="hrc__image">
+                  <img src=${image} alt=${imageAlt || ''} loading="lazy" />
+                </picture>
+              `
     : null}
-      <div className="hrc__overlay" aria-hidden="true"></div>
-      <div className="hrc__body">
-        ${tagLabel ? html`<span className="hrc__tag">${tagLabel}</span>` : null}
-        ${title ? html`<h3 className="hrc__title">${title}</h3>` : null}
-        ${descriptionHTML ? html`<p className="hrc__description">${descriptionHTML}</p>` : null}
-        <${Cta} ctaLabel=${ctaLabel} ctaHref=${hasLink ? null : ctaHref} isWrapped=${hasLink} />
-      </div>
-    </article>
+          <div className="hrc__body">
+            ${tagLabel ? html`<span className="hrc__tag">${tagLabel}</span>` : null}
+            ${title ? html`<h3 className="hrc__title">${title}</h3>` : null}
+            ${descriptionHTML ? html`<p className="hrc__description">${descriptionHTML}</p>` : null}
+            <${Cta} ctaLabel=${ctaLabel} ctaHref=${hasLink ? null : ctaHref} isWrapped=${hasLink} />
+          </div>
+        </div>
+    </section>
   `;
 
   if (hasLink) {

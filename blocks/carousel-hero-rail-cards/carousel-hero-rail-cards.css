@@ -96,3 +96,14 @@
         display: none;
     }
 }
+
+@media (max-width: 500px) {
+    .hrc-carousel-swiper .swiper-slide {
+        width: 100%;
+        gap: 50px;
+    }
+
+    .hrc-carousel-swiper .hrc {
+        width: 100%;
+    }
+}

@@ -115,17 +115,20 @@ export default async function decorate(block) {
 
   const slidesContent = slides.map((props, idx) => h(HeroRailCard, { ...props, key: idx }));
 
+  const baseSpace = config.spaceBetween;
   const swiperConfigs = {
     slidesPerView: config.slidesPerView,
-    spaceBetween: config.spaceBetween,
+    spaceBetween: baseSpace,
     centeredSlides: config.centeredSlides,
     loop: slides.length > 1 && config.loop,
     navigation: slides.length > 1 && config.navigation,
     pagination: slides.length > 1 && config.pagination,
     autoplay: config.autoplay ? { delay: config.autoplayDelay, disableOnInteraction: false } : false,
     breakpoints: {
-      768: { spaceBetween: config.spaceBetween + 4 },
-      1024: { spaceBetween: config.spaceBetween + 8 },
+      0: { slidesPerView: 1, spaceBetween: 12, centeredSlides: false },
+      500: { slidesPerView: config.slidesPerView, spaceBetween: baseSpace, centeredSlides: config.centeredSlides },
+      768: { spaceBetween: baseSpace + 4 },
+      1024: { spaceBetween: baseSpace + 8 },
     },
   };
 

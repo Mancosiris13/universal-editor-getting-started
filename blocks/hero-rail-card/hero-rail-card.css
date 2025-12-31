@@ -9,7 +9,7 @@
     width: min(100%, 460px);
     aspect-ratio: 1.25;
     min-height: 320px;
-    border-radius: 18px;
+    border-radius: 16px;
     overflow: hidden;
     background: #f6f6f6;
     box-shadow: 0 18px 40px rgb(0 0 0 / 12%);
@@ -107,5 +107,11 @@
 
     .hrc__description {
         font-size: 14px;
+    }
+}
+
+@media (max-width: 500px) {
+    .hrc__content-wrapper {
+        width: 100vw;
     }
 }

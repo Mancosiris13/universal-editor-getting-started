@@ -9,6 +9,7 @@ const html = htm.bind(h);
 const assetBase = window.hlx?.codeBasePath || '';
 const SWIPER_JS = `${assetBase}/libs/swiper/swiper-bundle.min.mjs`;
 const SWIPER_CSS = `${assetBase}/libs/swiper/swiper-bundle.min.css`;
+const HERO_CSS = `${assetBase}/blocks/hero-rail-card/hero-rail-card.css`;
 const ARROW_ICON = `${assetBase}/icons/arrow.svg`;
 
 let swiperPromise;
@@ -19,25 +20,26 @@ function ensureSwiper() {
   return swiperPromise;
 }
 
+let heroCssPromise;
+function ensureHeroCss() {
+  if (!heroCssPromise) {
+    heroCssPromise = loadCSS(HERO_CSS);
+  }
+  return heroCssPromise;
+}
+
 export default function CustomCarousel({ swiperConfigs, slides }) {
   const rootRef = useRef(null);
   const swiperRef = useRef(null);
   const swiperInstanceRef = useRef(null);
   const [ready, setReady] = useState(false);
 
-  const handlePrevClick = () => {
-    swiperInstanceRef.current?.slidePrev();
-  };
-
-  const handleNextClick = () => {
-    swiperInstanceRef.current?.slideNext();
-  };
-
   useEffect(() => {
     let observer;
 
     const initSwiper = async () => {
-      if (!swiperRef.current || swiperInstanceRef.current) return;
+      if (!rootRef.current || !swiperRef.current || swiperInstanceRef.current) return;
+      await ensureHeroCss();
       const Swiper = await ensureSwiper();
       const config = { ...swiperConfigs };
 
@@ -56,7 +58,7 @@ export default function CustomCarousel({ swiperConfigs, slides }) {
       }
 
       swiperInstanceRef.current = new Swiper(swiperRef.current, config);
-      rootRef.current?.classList.add('swiper-ready');
+      rootRef.current.classList.add('swiper-ready');
       swiperRef.current.classList.add('swiper-ready');
       setReady(true);
     };
@@ -82,8 +84,6 @@ export default function CustomCarousel({ swiperConfigs, slides }) {
         swiperInstanceRef.current.destroy(true, true);
         swiperInstanceRef.current = null;
       }
-      rootRef.current?.classList.remove('swiper-ready');
-      swiperRef.current?.classList.remove('swiper-ready');
     };
   }, [swiperConfigs]);
 
@@ -91,16 +91,22 @@ export default function CustomCarousel({ swiperConfigs, slides }) {
     <div className="hrc-carousel" ref=${rootRef}>
       ${swiperConfigs.navigation
     ? html`
-            <div className="swiper-button-prev" role="button" tabindex="0" aria-label="Previous" onClick=${handlePrevClick}>
-              <img src=${ARROW_ICON} alt="" aria-hidden="true" draggable="false" />
+            <div className="swiper-button-prev" role="button" tabindex="0" aria-label="Previous">
+              <img src=${ARROW_ICON} alt="Previous" width="20" height="20" />
             </div>
-            <div className="swiper-button-next" role="button" tabindex="0" aria-label="Next" onClick=${handleNextClick}>
-              <img src=${ARROW_ICON} alt="" aria-hidden="true" draggable="false" />
+            <div className="swiper-button-next" role="button" tabindex="0" aria-label="Next">
+              <img src=${ARROW_ICON} alt="Next" width="20" height="20" />
             </div>
           `
     : null}
       <div className="swiper hrc-carousel-swiper" ref=${swiperRef}>
-        <div className="swiper-wrapper">${slides.map((slide) => html` <div className=${`swiper-slide ${!ready ? 'inline-space' : ''}`} style=${{ '--space': `${swiperConfigs.spaceBetween || 0}px` }}>${slide}</div> `)}</div>
+        <div className="swiper-wrapper">
+          ${slides.map((slide) => html`
+                <div className=${`swiper-slide ${!ready ? 'inline-space' : ''}`} style=${{ '--space': `${swiperConfigs.spaceBetween || 0}px` }}>
+                  ${slide}
+                </div>
+              `)}
+        </div>
         ${swiperConfigs.pagination ? html`<div className="swiper-pagination"></div>` : null}
       </div>
     </div>

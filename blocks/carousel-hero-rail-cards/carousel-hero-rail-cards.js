@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { h, render } from '@dropins/tools/preact.js';
-import { generateOptimizedImageUrl } from '../../scripts/aem.js';
+import { generateOptimizedImageUrl, loadCSS } from '../../scripts/aem.js';
 import HeroRailCard from '../hero-rail-card/render.js';
 import CustomCarousel from './custom-carousel.js';
 
@@ -80,6 +80,107 @@ function buildSlide(row) {
   };
 }
 
+function collectAuthorCardCells(row) {
+  const cells = getCells(row);
+  const imageCell = findPropEl(row, 'image') || cells[0];
+  const altCell = findPropEl(row, 'imageAlt') || findPropEl(row, 'alt') || findPropEl(row, 'alt text') || findPropEl(row, 'string') || cells[1];
+  const tagCell = findPropEl(row, 'urgency tag') || findPropEl(row, 'urgencyTag') || findPropEl(row, 'tag') || cells[2];
+  const titleCell = findPropEl(row, 'title') || cells[3];
+  const descriptionCell = findPropEl(row, 'description') || cells[4];
+  const ctaLabelCell = findPropEl(row, 'ctaLabel') || cells[5];
+  const ctaLinkCell = findPropEl(row, 'ctaLink') || cells[6];
+
+  return {
+    imageCell,
+    altCell,
+    tagCell,
+    titleCell,
+    descriptionCell,
+    ctaLabelCell,
+    ctaLinkCell,
+  };
+}
+
+function decorateAuthorCard(row) {
+  if (!row || row.classList.contains('hrc')) return;
+
+  const {
+    imageCell,
+    altCell,
+    tagCell,
+    titleCell,
+    descriptionCell,
+    ctaLabelCell,
+    ctaLinkCell,
+  } = collectAuthorCardCells(row);
+
+  row.classList.add('hrc');
+  if (imageCell) imageCell.classList.add('hrc__image');
+  if (tagCell) tagCell.classList.add('hrc__tag');
+  if (titleCell) titleCell.classList.add('hrc__title');
+  if (descriptionCell) descriptionCell.classList.add('hrc__description');
+
+  if (ctaLabelCell) ctaLabelCell.classList.add('hrc__cta');
+
+  const ctaLink = ctaLinkCell?.querySelector('a') || ctaLabelCell?.querySelector('a');
+  if (ctaLink) ctaLink.classList.add('hrc__cta');
+
+  if (altCell) altCell.hidden = true;
+  if (ctaLinkCell && ctaLinkCell !== ctaLabelCell) {
+    ctaLinkCell.hidden = true;
+  }
+
+  const contentWrapper = document.createElement('div');
+  contentWrapper.className = 'hrc__content-wrapper';
+
+  const body = document.createElement('div');
+  body.className = 'hrc__body';
+
+  if (imageCell) contentWrapper.append(imageCell);
+
+  const bodyCells = [tagCell, titleCell, descriptionCell, ctaLabelCell, ctaLinkCell, altCell]
+    .filter(Boolean);
+  [...new Set(bodyCells)].forEach((cell) => body.append(cell));
+
+  if (body.childElementCount) contentWrapper.append(body);
+  row.replaceChildren(contentWrapper);
+}
+
+async function buildAuthorCarousel(block, slideRows, config, configRow) {
+  const assetBase = window.hlx?.codeBasePath || '';
+  await loadCSS(`${assetBase}/blocks/hero-rail-card/hero-rail-card.css`);
+
+  const carousel = document.createElement('div');
+  carousel.className = 'hrc-carousel swiper-ready';
+
+  const swiper = document.createElement('div');
+  swiper.className = 'swiper hrc-carousel-swiper swiper-ready';
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'swiper-wrapper';
+
+  const space = Number(config.spaceBetween) || 0;
+
+  slideRows.forEach((row) => {
+    decorateAuthorCard(row);
+    const slide = document.createElement('div');
+    slide.className = 'swiper-slide inline-space';
+    slide.style.setProperty('--space', `${space}px`);
+    slide.append(row);
+    wrapper.append(slide);
+  });
+
+  swiper.append(wrapper);
+  carousel.append(swiper);
+
+  if (configRow) {
+    configRow.hidden = true;
+  }
+
+  block.replaceChildren(carousel);
+  if (configRow) block.append(configRow);
+}
+
 export default async function decorate(block) {
   const rows = [...block.querySelectorAll(':scope > div')];
   if (!rows.length) return;
@@ -96,15 +197,27 @@ export default async function decorate(block) {
   };
 
   let slideRows = rows;
+  let configRow;
   const maybeConfigRow = rows[0];
   if (maybeConfigRow && !maybeConfigRow.querySelector('img') && maybeConfigRow.children.length >= 3) {
     config = readConfig(maybeConfigRow);
     slideRows = rows.slice(1);
+    configRow = maybeConfigRow;
   }
 
   const nestedHeroBlocks = [...block.querySelectorAll(':scope > div[data-block-name="hero-rail-card"], :scope > div.hero-rail-card')];
   if (nestedHeroBlocks.length) {
     slideRows = nestedHeroBlocks;
+  }
+
+  const isAuthor = window.xwalk?.isAuthorEnv || document.documentElement.hasAttribute('data-aue-version');
+  if (isAuthor) {
+    block.classList.add('carousel-hero-rail-cards', 'carousel-hero-rail-cards--author');
+    if (!slideRows.length) return;
+    if (!block.querySelector(':scope > .hrc-carousel')) {
+      await buildAuthorCarousel(block, slideRows, config, configRow);
+    }
+    return;
   }
 
   const slides = slideRows.map(buildSlide).filter((s) => s.image);

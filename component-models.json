@@ -296,47 +296,54 @@
         "name": "image",
         "label": "Desktop Image",
         "valueType": "string",
-        "multi": false
+        "multi": false,
+        "inline": false
       },
       {
         "component": "text",
         "name": "string",
         "label": "Alt text",
         "valueType": "string",
-        "value": ""
+        "value": "",
+        "inline": false
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "urgency-tag",
         "label": "Urgency Tag",
-        "value": ""
+        "value": "",
+        "inline": false
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "title",
         "label": "Title",
-        "value": ""
+        "value": "",
+        "inline": false
       },
       {
         "component": "richtext",
         "name": "description",
         "value": "",
         "label": "Description",
-        "valueType": "string"
+        "valueType": "string",
+        "inline": false
       },
       {
         "component": "text",
         "valueType": "string",
         "name": "ctaLabel",
         "label": "CTA Label",
-        "value": ""
+        "value": "",
+        "inline": false
       },
       {
         "component": "aem-content",
         "name": "ctaLink",
-        "label": "CTA Link"
+        "label": "CTA Link",
+        "inline": false
       }
     ]
   },

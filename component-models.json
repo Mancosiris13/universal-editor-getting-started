@@ -409,6 +409,18 @@
     ]
   },
   {
+    "id": "deals-grid",
+    "fields": [
+      {
+        "component": "text",
+        "name": "classes",
+        "label": "Additional Classes",
+        "valueType": "string",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "deal-card",
     "fields": [
       {

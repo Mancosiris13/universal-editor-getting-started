@@ -21,7 +21,7 @@
       "main-banner",
       "carousel-hero-rail-cards",
       "hero-rail-card",
-      "deal-card",
+      "deals-grid",
       "full-width-compact-banner-with-buttons",
       "full-width-compact-banner-with-cards-carousel",
       "inner-fwcbwcc-cards-carousel",
@@ -181,6 +181,10 @@
   {
     "id": "cards-carousel",
     "components": ["cards-carousel-card"]
+  },
+  {
+    "id": "deals-grid",
+    "components": ["deal-card"]
   },
   {
     "id": "carousel-hero-rail-cards",

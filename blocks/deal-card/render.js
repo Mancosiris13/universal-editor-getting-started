@@ -19,20 +19,23 @@ export default function DealCard({
 
   const card = html`
     <section className="deal-card" aria-label=${imageAlt || title || undefined} style=${{ backgroundColor: bgColor }}>
+      ${tagLabel ? html`<span className="deal-card__tag">${tagLabel}</span>` : null}
       <div className="deal-card__content-wrapper">
         ${image
     ? html`
-              <picture className="deal-card__image">
-                <img src=${image} alt=${imageAlt || ''} loading="lazy" />
+              <picture className="deal-card__image-container">
+                <img src=${image} alt=${imageAlt || ''} loading="lazy" className="deal-card__image" />
               </picture>
             `
     : null}
+
         <div className="deal-card__body">
-          ${tagLabel ? html`<span className="deal-card__tag">${tagLabel}</span>` : null} ${title ? html`<h3 className="deal-card__title">${title}</h3>` : null}
-          ${descriptionHTML ? html`<p className="deal-card__description">${descriptionHTML}</p>` : null}
+          ${title ? html`<h3 className="deal-card__title">${title}</h3>` : null} ${descriptionHTML ? html`<p className="deal-card__description">${descriptionHTML}</p>` : null}
+
           <${Cta} ctaHref=${hasLink ? null : ctaHref} isWrapped=${hasLink} />
-          <p>${offerPrice}</p>
-          <p>${regularPrice}</p>
+          ${offerPrice || regularPrice
+    ? html` <div className="deal-card__prices-container">${offerPrice ? html`<p className="deal-card__offer-price">${offerPrice}</p>` : null} ${regularPrice ? html`<p className="deal-card__regular-price">${regularPrice}</p>` : null}</div> `
+    : null}
         </div>
       </div>
     </section>

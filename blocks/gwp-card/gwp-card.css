@@ -1,0 +1,49 @@
+p,
+h3 {
+    margin: 0;
+    color: #232323;
+    line-height: 1;
+}
+
+.gwp-card {
+    border-radius: 4px;
+    position: relative;
+}
+
+.gwp-card__link {
+    text-decoration: none !important;
+    color: inherit;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.gwp-card__content-wrapper {
+    border-radius: 4px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.gwp-card__image-container {
+    display: flex;
+}
+
+.gwp-card__image {
+    border-radius: 4px;
+}
+
+.gwp-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.gwp-card__title {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.gwp-card__description {
+    font-size: 14px;
+}

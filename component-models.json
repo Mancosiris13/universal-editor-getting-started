@@ -496,6 +496,18 @@
     ]
   },
   {
+    "id": "gwps-grid",
+    "fields": [
+      {
+        "component": "text",
+        "name": "classes",
+        "label": "Additional Classes",
+        "valueType": "string",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "gwp-card",
     "fields": [
       {

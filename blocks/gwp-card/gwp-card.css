@@ -3,6 +3,7 @@ h3 {
     margin: 0;
     color: #232323;
     line-height: 1;
+    font-family: sans-serif;
 }
 
 .gwp-card {
@@ -19,7 +20,7 @@ h3 {
 
 .gwp-card__content-wrapper {
     border-radius: 4px;
-    padding: 15px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -27,23 +28,50 @@ h3 {
 
 .gwp-card__image-container {
     display: flex;
+    align-items: start;
 }
 
 .gwp-card__image {
     border-radius: 4px;
+    width: 100%;
+    height: auto;
+    max-width: clamp(88px, 20vw, 212px);
 }
 
 .gwp-card__body {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+}
+
+.gwp-card__brand-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #6e6e6e;
+    line-height: 16px;
 }
 
 .gwp-card__title {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
+    color: #232323;
+    padding: 8px 0;
+    line-height: 22px;
 }
 
 .gwp-card__description {
     font-size: 14px;
+    font-weight: 400;
+}
+
+@media (min-width: 1440px) {
+    .gwp-card__content-wrapper {
+        padding: 32px;
+    }
+}
+
+@media (min-width: 550px) {
+    .gwp-card__image-container {
+        align-items: center;
+        justify-content: center;
+    }
 }

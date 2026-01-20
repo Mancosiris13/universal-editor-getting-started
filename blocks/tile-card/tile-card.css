@@ -1,0 +1,52 @@
+.tile-card {
+    border-radius: 8px;
+    position: relative;
+    max-width: 400px;
+}
+
+.tile-card__tag {
+    font-weight: 700;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    width: fit-content;
+}
+
+.tile-card__content-wrapper {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tile-card__image-container {
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tile-card__image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.tile-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tile-card__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.tile-card__description {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}

@@ -508,6 +508,87 @@
     ]
   },
   {
+    "id": "tiles-grid",
+    "fields": [
+      {
+        "component": "text",
+        "name": "classes",
+        "label": "Additional Classes",
+        "valueType": "string",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "tile-card",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "valueType": "string",
+        "multi": false,
+        "inline": false
+      },
+      {
+        "component": "text",
+        "name": "string",
+        "label": "Alt text",
+        "valueType": "string",
+        "value": "",
+        "inline": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tag-text",
+        "label": "Tag Text",
+        "value": "",
+        "inline": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tag-text-color",
+        "label": "Tag Text Color",
+        "value": "",
+        "inline": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tag-background-color",
+        "label": "Tag Background Color",
+        "value": "",
+        "inline": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "value": "",
+        "inline": false
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string",
+        "inline": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "background-color",
+        "label": "Background Color",
+        "value": "",
+        "inline": false
+      }
+    ]
+  },
+  {
     "id": "gwp-card",
     "fields": [
       {

@@ -31,7 +31,8 @@
       "product-teaser",
       "product-recommendations",
       "quote",
-      "separator"
+      "separator",
+      "headers-with-colors"
     ]
   },
   {

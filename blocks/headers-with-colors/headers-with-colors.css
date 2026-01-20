@@ -1,0 +1,9 @@
+.headers-with-colors {
+    max-width: 100%;
+    align-items: center;
+}
+
+.headers-with-colors-wrapper {
+    max-width: 100% !important;
+    padding: 0 !important;
+}

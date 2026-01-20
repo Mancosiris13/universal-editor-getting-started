@@ -4,6 +4,10 @@
     max-width: 450px;
 }
 
+.tile-card__link {
+    text-decoration: none !important;
+}
+
 .tile-card__tag {
     font-weight: 700;
     padding: 4px;
@@ -43,6 +47,12 @@
     margin: 0;
     font-size: 16px;
     font-weight: 600;
+}
+
+.tile-card:hover .tile-card__title,
+.tile-card__link:hover .tile-card__title {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
 }
 
 .tile-card__description {

@@ -8,26 +8,13 @@ function Tag({ text, textColor, backgroundColor }) {
   return html` <span className="tile-card__tag" style=${{ color: textColor || undefined, backgroundColor: backgroundColor || undefined }}> ${text} </span> `;
 }
 
-function Cta({ ctaLabel, ctaHref, isWrapped }) {
-  if (!ctaLabel) return null;
-  if (isWrapped) {
-    return html`<span className="tile-card__cta" role="presentation">${ctaLabel}</span>`;
-  }
+function Cta({ ctaHref }) {
   if (!ctaHref) return null;
-  return html`<a className="tile-card__cta" href=${ctaHref} draggable="false">${ctaLabel}</a>`;
+  return html`<a className="tile-card__cta" href=${ctaHref} draggable="false"></a>`;
 }
 
 export default function TileCard({
-  image,
-  imageAlt,
-  tagText,
-  tagTextColor,
-  tagBackgroundColor,
-  title,
-  description,
-  bgColor,
-  ctaLabel,
-  ctaHref,
+  image, imageAlt, tagText, tagTextColor, tagBackgroundColor, title, description, bgColor, ctaHref,
 }) {
   const hasLink = Boolean(ctaHref);
 
@@ -44,7 +31,7 @@ export default function TileCard({
         <div className="tile-card__body">
           <${Tag} text=${tagText} textColor=${tagTextColor} backgroundColor=${tagBackgroundColor} />
           ${title ? html`<h3 className="tile-card__title">${title}</h3>` : null} ${description ? html`<p className="tile-card__description">${description}</p>` : null}
-          <${Cta} ctaLabel=${ctaLabel} ctaHref=${hasLink ? null : ctaHref} isWrapped=${hasLink} />
+          <${Cta} ctaHref=${hasLink ? null : ctaHref} />
         </div>
       </div>
     </section>

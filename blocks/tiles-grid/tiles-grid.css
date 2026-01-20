@@ -6,6 +6,10 @@
     margin: 0 16px;
 }
 
+.tiles-grid-wrapper {
+    padding: 0 !important;
+}
+
 .tiles-grid__content {
     display: grid;
     grid-template-columns: repeat(var(--tiles-grid-columns), minmax(0, 1fr));

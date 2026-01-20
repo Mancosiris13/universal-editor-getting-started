@@ -38,7 +38,6 @@ export default function decorate(block) {
     title: getText(titleCell) || '',
     description: getText(descriptionCell) || '',
     bgColor: getText(backgroundColorCell) || '',
-    ctaLabel: ctaLink?.textContent?.trim() || getText(ctaLinkCell) || '',
     ctaHref: ctaLink?.href || '',
   };
 

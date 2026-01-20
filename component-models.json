@@ -673,12 +673,6 @@
         "label": "Background Color",
         "value": "",
         "inline": false
-      },
-      {
-        "component": "aem-content",
-        "name": "ctaLink",
-        "label": "CTA Link",
-        "inline": false
       }
     ]
   },

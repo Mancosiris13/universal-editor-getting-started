@@ -406,7 +406,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Tiles Grid Carousel",
+                  "name": "Tiles Grid",
                   "model": "tiles-grid",
                   "filter": "tiles-grid"
                 }

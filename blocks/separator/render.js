@@ -16,5 +16,5 @@ export default function Separator({ heightDesktop, heightMobile, bgColor }) {
     '--separator-height-mobile': normalizeSize(heightMobile) || undefined,
   };
 
-  return html`<div className="separator" role="presentation" style=${style}></div>`;
+  return html`<div className="separator__spacer" role="presentation" style=${style}></div>`;
 }

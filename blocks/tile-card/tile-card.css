@@ -19,7 +19,6 @@
 }
 
 .tile-card__content-wrapper {
-    padding: 16px;
     display: flex;
     flex-direction: column;
     gap: 12px;

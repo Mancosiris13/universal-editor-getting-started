@@ -648,6 +648,41 @@
     ]
   },
   {
+    "id": "separator",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "height-desktop",
+        "label": "Height Desktop",
+        "value": "",
+        "inline": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "height-mobile",
+        "label": "Height Mobile",
+        "value": "",
+        "inline": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "background-color",
+        "label": "Background Color",
+        "value": "",
+        "inline": false
+      },
+      {
+        "component": "aem-content",
+        "name": "ctaLink",
+        "label": "CTA Link",
+        "inline": false
+      }
+    ]
+  },
+  {
     "id": "image",
     "fields": [
       {

@@ -1,0 +1,10 @@
+.separator {
+    width: 100%;
+    height: var(--separator-height-desktop, 0);
+}
+
+@media (max-width: 699px) {
+    .separator {
+        height: var(--separator-height-mobile, var(--separator-height-desktop, 0));
+    }
+}

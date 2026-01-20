@@ -1,7 +1,7 @@
 .tile-card {
     border-radius: 8px;
     position: relative;
-    max-width: 400px;
+    max-width: 450px;
 }
 
 .tile-card__tag {
@@ -49,4 +49,11 @@
     margin: 0;
     font-size: 14px;
     line-height: 1.4;
+}
+
+.tile-card__cta {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: underline;
 }

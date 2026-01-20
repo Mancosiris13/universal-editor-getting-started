@@ -21,8 +21,10 @@ export default function decorate(block) {
   const titleCell = cells[5];
   const descriptionCell = cells[6];
   const backgroundColorCell = cells[7];
+  const ctaLinkCell = cells[8];
 
   const imgEl = imageCell?.querySelector('img');
+  const ctaLink = ctaLinkCell?.querySelector('a');
   const imageWidth = Number(imgEl?.width) || 900;
   const rawImage = imgEl?.src || '';
   const imageOptimized = generateOptimizedImageUrl(rawImage, { width: imageWidth });
@@ -36,6 +38,8 @@ export default function decorate(block) {
     title: getText(titleCell) || '',
     description: getText(descriptionCell) || '',
     bgColor: getText(backgroundColorCell) || '',
+    ctaLabel: ctaLink?.textContent?.trim() || getText(ctaLinkCell) || '',
+    ctaHref: ctaLink?.href || '',
   };
 
   block.textContent = '';

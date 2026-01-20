@@ -1,7 +1,7 @@
 .tile-card {
-    border-radius: 8px;
     position: relative;
     max-width: 450px;
+    font-family: sans-serif !important;
 }
 
 .tile-card__link {
@@ -26,7 +26,6 @@
 
 .tile-card__image-container {
     display: block;
-    border-radius: 8px;
     overflow: hidden;
 }
 
@@ -44,7 +43,7 @@
 
 .tile-card__title {
     margin: 0;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 600;
 }
 

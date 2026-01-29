@@ -713,6 +713,49 @@
     ]
   },
   {
+    "id": "promo-card-compact",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Desktop Image",
+        "valueType": "string",
+        "multi": false,
+        "inline": false
+      },
+      {
+        "component": "text",
+        "name": "string",
+        "label": "Alt text",
+        "valueType": "string",
+        "value": "",
+        "inline": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "value": "",
+        "inline": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "background-color",
+        "label": "Background Color",
+        "value": "",
+        "inline": false
+      },
+      {
+        "component": "aem-content",
+        "name": "ctaLink",
+        "label": "CTA Link",
+        "inline": false
+      }
+    ]
+  },
+  {
     "id": "image",
     "fields": [
       {

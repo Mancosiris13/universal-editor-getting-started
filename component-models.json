@@ -756,6 +756,18 @@
     ]
   },
   {
+    "id": "show-case-hero-caroseul",
+    "fields": [
+      {
+        "component": "text",
+        "name": "classes",
+        "label": "Additional Classes",
+        "valueType": "string",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "image",
     "fields": [
       {

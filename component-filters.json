@@ -33,7 +33,8 @@
       "quote",
       "separator",
       "headers-with-colors",
-      "promo-card-compact"
+      "promo-card-compact",
+      "show-case-hero-caroseul"
     ]
   },
   {
@@ -202,6 +203,10 @@
   {
     "id": "carousel-hero-rail-cards",
     "components": ["hero-rail-card"]
+  },
+  {
+    "id": "show-case-hero-caroseul",
+    "components": ["promo-card-compact"]
   },
   {
     "id": "full-width-compact-banner-with-buttons",

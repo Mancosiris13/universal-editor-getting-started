@@ -1,18 +1,16 @@
-import { loadBlock, loadCSS } from '../../scripts/aem.js';
+/* eslint-disable max-len */
+import { h, render } from '@dropins/tools/preact.js';
+import { generateOptimizedImageUrl, loadCSS } from '../../scripts/aem.js';
+import HeroRailCard from '../hero-rail-card/render.js';
+import CustomCarousel from './custom-carousel.js';
 
-const PROMO_CARD_BLOCK = 'promo-card-compact';
-const assetBase = window.hlx?.codeBasePath || '';
-const SWIPER_JS = `${assetBase}/libs/swiper/swiper-bundle.min.mjs`;
-const SWIPER_CSS = `${assetBase}/libs/swiper/swiper-bundle.min.css`;
-const ARROW_ICON = `${assetBase}/icons/arrow.svg`;
+function toKebabCase(str = '') {
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
 
-let swiperPromise;
-function ensureSwiper() {
-  if (!swiperPromise) {
-    swiperPromise = Promise.all([loadCSS(SWIPER_CSS), import(SWIPER_JS)])
-      .then(([, mod]) => mod?.default || mod);
-  }
-  return swiperPromise;
+function findPropEl(base, propName) {
+  const kebab = toKebabCase(propName);
+  return base.querySelector(`[data-aue-prop="${propName}"]`) || base.querySelector(`[data-aue-prop="${kebab}"]`);
 }
 
 function getCells(row) {
@@ -23,122 +21,222 @@ function getCells(row) {
   return direct;
 }
 
-function collectPromoCards(row) {
-  if (!row) return [];
-  if (row.matches(`[data-block-name="${PROMO_CARD_BLOCK}"], .${PROMO_CARD_BLOCK}`)) return [row];
+function parseNumber(value, fallback) {
+  if (value === undefined || value === null || value === '') return fallback;
+  const n = Number(value);
+  return Number.isNaN(n) ? fallback : n;
+}
 
-  const direct = [...row.querySelectorAll(`:scope > div[data-block-name="${PROMO_CARD_BLOCK}"], :scope > div.${PROMO_CARD_BLOCK}`)];
-  if (direct.length) return direct;
+function parseBoolean(value, fallback) {
+  if (value === undefined || value === null || value === '') return fallback;
+  const val = String(value).trim().toLowerCase();
+  if (['true', 'yes', '1'].includes(val)) return true;
+  if (['false', 'no', '0'].includes(val)) return false;
+  return fallback;
+}
 
+function readConfig(row) {
   const cells = getCells(row);
-  const candidates = (cells.length === 1 && cells[0]?.children?.length)
-    ? [...cells[0].children]
-    : cells;
+  const [rawSlidesPerView, rawSpaceBetween, rawNavigation, rawPagination, rawAutoplay, rawDelay, rawLoop, rawCentered] = cells.map((c) => c?.textContent?.trim());
 
-  return candidates.filter((cell) => cell.matches(`[data-block-name="${PROMO_CARD_BLOCK}"], .${PROMO_CARD_BLOCK}`));
+  return {
+    slidesPerView: rawSlidesPerView ? parseNumber(rawSlidesPerView, 'auto') || 'auto' : 'auto',
+    spaceBetween: parseNumber(rawSpaceBetween, 24),
+    navigation: parseBoolean(rawNavigation, true),
+    pagination: parseBoolean(rawPagination, true),
+    autoplay: parseBoolean(rawAutoplay, false),
+    autoplayDelay: parseNumber(rawDelay, 6000),
+    loop: parseBoolean(rawLoop, true),
+    centeredSlides: parseBoolean(rawCentered, false),
+  };
 }
 
-function getPromoCardItems(block) {
-  const nested = [...block.querySelectorAll(`:scope > div[data-block-name="${PROMO_CARD_BLOCK}"], :scope > div.${PROMO_CARD_BLOCK}`)];
-  if (nested.length) return nested;
+function buildSlide(row) {
+  const cells = getCells(row);
 
-  const rows = [...block.children];
-  return rows.flatMap(collectPromoCards);
+  const imageCell = findPropEl(row, 'image') || cells[0];
+  const altCell = findPropEl(row, 'imageAlt') || findPropEl(row, 'alt') || findPropEl(row, 'alt text') || findPropEl(row, 'string') || cells[1];
+  const tagCell = findPropEl(row, 'urgency tag') || findPropEl(row, 'urgencyTag') || findPropEl(row, 'tag') || cells[2];
+  const titleCell = findPropEl(row, 'title') || cells[3];
+  const descriptionCell = findPropEl(row, 'description') || cells[4];
+  const ctaLabelCell = findPropEl(row, 'ctaLabel') || cells[5];
+  const ctaLinkCell = findPropEl(row, 'ctaLink') || cells[6];
+
+  const imgEl = imageCell?.querySelector('img');
+  const ctaLink = ctaLinkCell?.querySelector('a') || ctaLabelCell?.querySelector('a');
+
+  const imageWidth = Number(imgEl?.width) || 900;
+  const rawImage = imgEl?.src || '';
+  const imageOptimized = generateOptimizedImageUrl(rawImage, { width: imageWidth });
+
+  return {
+    image: imageOptimized,
+    imageAlt: altCell?.textContent?.trim() || imgEl?.alt || '',
+    tagLabel: tagCell?.textContent?.trim() || '',
+    title: titleCell?.textContent?.trim() || '',
+    descriptionHTML: descriptionCell?.textContent?.trim() || '',
+    ctaLabel: ctaLabelCell?.textContent?.trim() || '',
+    ctaHref: ctaLink?.href || '',
+  };
 }
 
-async function loadPromoCards(items) {
-  const tasks = items
-    .map((item) => {
-      const blockName = item.dataset.blockName || item.getAttribute('data-block-name');
-      if (blockName && blockName !== PROMO_CARD_BLOCK) return null;
-      if (!blockName) item.dataset.blockName = PROMO_CARD_BLOCK;
-      if (!item.classList.contains(PROMO_CARD_BLOCK)) item.classList.add(PROMO_CARD_BLOCK);
-      return loadBlock(item);
-    })
-    .filter(Boolean);
+function collectAuthorCardCells(row) {
+  const cells = getCells(row);
+  const imageCell = findPropEl(row, 'image') || cells[0];
+  const altCell = findPropEl(row, 'imageAlt') || findPropEl(row, 'alt') || findPropEl(row, 'alt text') || findPropEl(row, 'string') || cells[1];
+  const tagCell = findPropEl(row, 'urgency tag') || findPropEl(row, 'urgencyTag') || findPropEl(row, 'tag') || cells[2];
+  const titleCell = findPropEl(row, 'title') || cells[3];
+  const descriptionCell = findPropEl(row, 'description') || cells[4];
+  const ctaLabelCell = findPropEl(row, 'ctaLabel') || cells[5];
+  const ctaLinkCell = findPropEl(row, 'ctaLink') || cells[6];
 
-  await Promise.all(tasks);
+  return {
+    imageCell,
+    altCell,
+    tagCell,
+    titleCell,
+    descriptionCell,
+    ctaLabelCell,
+    ctaLinkCell,
+  };
 }
 
-function buildNavButton(direction) {
-  const button = document.createElement('div');
-  button.className = `swiper-button-${direction}`;
-  button.setAttribute('role', 'button');
-  button.setAttribute('tabindex', '0');
-  button.setAttribute('aria-label', direction === 'next' ? 'Next' : 'Previous');
+function decorateAuthorCard(row) {
+  if (!row || row.classList.contains('promo-card-compact')) return;
 
-  const icon = document.createElement('img');
-  icon.src = ARROW_ICON;
-  icon.alt = direction === 'next' ? 'Next' : 'Previous';
-  icon.width = 20;
-  icon.height = 20;
-  if (direction === 'prev') icon.style.transform = 'rotate(180deg)';
+  const {
+    imageCell, altCell, titleCell, descriptionCell, ctaLabelCell, ctaLinkCell,
+  } = collectAuthorCardCells(row);
 
-  button.append(icon);
-  return button;
-}
+  row.classList.add('promo-card-compact');
+  if (imageCell) imageCell.classList.add('promo-card-compact__image');
+  // if (tagCell) tagCell.classList.add('promo-card-compact__tag');
+  if (titleCell) titleCell.classList.add('promo-card-compact__title');
+  if (descriptionCell) descriptionCell.classList.add('promo-card-compact__description');
 
-export default async function decorate(block) {
-  block.classList.add('show-case-hero-caroseul');
-  const items = getPromoCardItems(block).filter(Boolean);
-  if (!items.length) return;
+  if (ctaLabelCell) ctaLabelCell.classList.add('promo-card-compact__cta');
 
-  const isAuthor = window.xwalk?.isAuthorEnv || document.documentElement.hasAttribute('data-aue-version');
-  if (isAuthor) {
-    block.classList.add('show-case-hero-caroseul--author');
-    await loadPromoCards(items);
-    return;
+  const ctaLink = ctaLinkCell?.querySelector('a') || ctaLabelCell?.querySelector('a');
+  if (ctaLink) ctaLink.classList.add('promo-card-compact__cta');
+
+  if (altCell) altCell.hidden = true;
+  if (ctaLinkCell && ctaLinkCell !== ctaLabelCell) {
+    ctaLinkCell.hidden = true;
   }
 
-  const root = document.createElement('div');
-  root.className = 'show-case-hero-caroseul__carousel';
+  const contentWrapper = document.createElement('div');
+  contentWrapper.className = 'promo-card-compact__content-wrapper';
 
-  const prev = buildNavButton('prev');
-  const next = buildNavButton('next');
-  root.append(prev, next);
+  const body = document.createElement('div');
+  body.className = 'promo-card-compact__body';
 
-  const swiperEl = document.createElement('div');
-  swiperEl.className = 'swiper show-case-hero-caroseul__swiper';
+  if (imageCell) contentWrapper.append(imageCell);
+
+  const bodyCells = [titleCell, descriptionCell, ctaLabelCell, ctaLinkCell, altCell].filter(Boolean);
+  [...new Set(bodyCells)].forEach((cell) => body.append(cell));
+
+  if (body.childElementCount) contentWrapper.append(body);
+  row.replaceChildren(contentWrapper);
+}
+
+async function buildAuthorCarousel(block, slideRows, config, configRow) {
+  const assetBase = window.hlx?.codeBasePath || '';
+  await loadCSS(`${assetBase}/blocks/promo-card-compact/promo-card-compact.css`);
+
+  const carousel = document.createElement('div');
+  carousel.className = 'show-case-hero-carousel swiper-ready';
+
+  const swiper = document.createElement('div');
+  swiper.className = 'swiper show-case-hero-carousel-swiper swiper-ready';
 
   const wrapper = document.createElement('div');
   wrapper.className = 'swiper-wrapper';
 
-  items.forEach((item) => {
+  const space = Number(config.spaceBetween) || 0;
+
+  slideRows.forEach((row) => {
+    decorateAuthorCard(row);
     const slide = document.createElement('div');
-    slide.className = 'swiper-slide';
-    slide.append(item);
+    slide.className = 'swiper-slide inline-space';
+    slide.style.setProperty('--space', `${space}px`);
+    slide.append(row);
     wrapper.append(slide);
   });
 
-  const pagination = document.createElement('div');
-  pagination.className = 'swiper-pagination';
+  swiper.append(wrapper);
+  carousel.append(swiper);
 
-  swiperEl.append(wrapper, pagination);
-  root.append(swiperEl);
+  if (configRow) {
+    configRow.hidden = true;
+  }
+
+  block.replaceChildren(carousel);
+  if (configRow) block.append(configRow);
+}
+
+export default async function decorate(block) {
+  const rows = [...block.querySelectorAll(':scope > div')];
+  if (!rows.length) return;
+
+  let config = {
+    slidesPerView: 6,
+    spaceBetween: 16,
+    navigation: true,
+    pagination: true,
+    autoplay: false,
+    autoplayDelay: 6000,
+    loop: true,
+    centeredSlides: false,
+  };
+
+  let slideRows = rows;
+  let configRow;
+  const maybeConfigRow = rows[0];
+  if (maybeConfigRow && !maybeConfigRow.querySelector('img') && maybeConfigRow.children.length >= 3) {
+    config = readConfig(maybeConfigRow);
+    slideRows = rows.slice(1);
+    configRow = maybeConfigRow;
+  }
+
+  const nestedHeroBlocks = [...block.querySelectorAll(':scope > div[data-block-name="hero-rail-card"], :scope > div.hero-rail-card')];
+  if (nestedHeroBlocks.length) {
+    slideRows = nestedHeroBlocks;
+  }
+
+  const isAuthor = window.xwalk?.isAuthorEnv || document.documentElement.hasAttribute('data-aue-version');
+  if (isAuthor) {
+    block.classList.add('carousel-hero-rail-cards', 'carousel-hero-rail-cards--author');
+    if (!slideRows.length) return;
+    if (!block.querySelector(':scope > .show-case-hero-carousel')) {
+      await buildAuthorCarousel(block, slideRows, config, configRow);
+    }
+    return;
+  }
+
+  const slides = slideRows.map(buildSlide).filter((s) => s.image);
+  if (!slides.length) return;
 
   block.textContent = '';
-  block.append(root);
-  await loadPromoCards(items);
+  block.classList.add('carousel-hero-rail-cards');
 
-  const Swiper = await ensureSwiper();
+  const slidesContent = slides.map((props, idx) => h(HeroRailCard, { ...props, key: idx }));
+
+  const baseSpace = config.spaceBetween;
   const swiperConfigs = {
-    slidesPerView: 'auto',
-    spaceBetween: 16,
-    navigation: {
-      nextEl: next,
-      prevEl: prev,
-    },
-    pagination: {
-      el: pagination,
-      clickable: true,
-    },
+    slidesPerView: config.slidesPerView,
+    spaceBetween: baseSpace,
+    centeredSlides: config.centeredSlides,
+    loop: slides.length > 1 && config.loop,
+    navigation: slides.length > 1 && config.navigation,
+    pagination: slides.length > 1 && config.pagination,
+    autoplay: config.autoplay ? { delay: config.autoplayDelay, disableOnInteraction: false } : false,
     breakpoints: {
-      768: {
-        spaceBetween: 24,
-      },
+      0: { slidesPerView: 1, spaceBetween: 12, centeredSlides: false },
+      500: { slidesPerView: config.slidesPerView, spaceBetween: baseSpace, centeredSlides: config.centeredSlides },
+      768: { spaceBetween: baseSpace + 4 },
+      1024: { spaceBetween: baseSpace + 8 },
     },
   };
 
-  const swiperInstance = new Swiper(swiperEl, swiperConfigs);
-  block.dataset.swiperInstance = swiperInstance ? 'ready' : '';
+  render(h(CustomCarousel, { swiperConfigs, slides: slidesContent }), block);
 }

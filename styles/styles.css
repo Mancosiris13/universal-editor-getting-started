@@ -418,6 +418,10 @@ main .section.highlight {
     padding: var(--spacing-xbig) 0;
 }
 
+main .section.margin-show-case-hero-carousel {
+    margin-top: -64px !important;
+}
+
 /* Base Design System Tokens */
 .dropin-design.dropin-design {
     --background-none: none 0 0% no-repeat padding-box;

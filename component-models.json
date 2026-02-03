@@ -740,6 +740,14 @@
         "inline": false
       },
       {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string",
+        "inline": false
+      },
+      {
         "component": "text",
         "valueType": "string",
         "name": "background-color",

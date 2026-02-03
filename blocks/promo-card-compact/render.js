@@ -13,7 +13,7 @@ function Cta({ ctaLabel, ctaHref, isWrapped }) {
 }
 
 export default function PromoCardCompact({
-  image, imageAlt, title, bgColor, ctaHref,
+  image, imageAlt, title, descriptionHTML, bgColor, ctaHref,
 }) {
   const hasLink = Boolean(ctaHref);
 
@@ -29,7 +29,7 @@ export default function PromoCardCompact({
     : null}
 
         <div className="promo-card-compact__body">
-          ${title ? html`<h3 className="promo-card-compact__title">${title}</h3>` : null}
+          ${title ? html`<h3 className="promo-card-compact__title">${title}</h3>` : null} ${descriptionHTML ? html`<p className="promo-card-compact__description">${descriptionHTML}</p>` : null}
           <${Cta} ctaHref=${hasLink ? null : ctaHref} isWrapped=${hasLink} />
         </div>
       </div>

@@ -57,8 +57,9 @@ function buildSlide(row) {
   const imageCell = findPropEl(row, 'image') || cells[0];
   const altCell = findPropEl(row, 'imageAlt') || findPropEl(row, 'alt') || findPropEl(row, 'alt text') || findPropEl(row, 'string') || cells[1];
   const titleCell = findPropEl(row, 'title') || cells[2];
-  const backgroundColorCell = findPropEl(row, 'background-color') || findPropEl(row, 'backgroundColor') || cells[3];
-  const ctaLinkCell = findPropEl(row, 'ctaLink') || cells[4];
+  const descriptionCell = findPropEl(row, 'description') || cells[3];
+  const backgroundColorCell = findPropEl(row, 'background-color') || findPropEl(row, 'backgroundColor') || cells[4];
+  const ctaLinkCell = findPropEl(row, 'ctaLink') || cells[5];
 
   const imgEl = imageCell?.querySelector('img');
   const ctaLink = ctaLinkCell?.querySelector('a');
@@ -71,6 +72,7 @@ function buildSlide(row) {
     image: imageOptimized,
     imageAlt: altCell?.textContent?.trim() || imgEl?.alt || '',
     title: titleCell?.textContent?.trim() || '',
+    descriptionHTML: descriptionCell?.textContent?.trim() || '',
     bgColor: backgroundColorCell?.textContent?.trim() || '',
     ctaHref: ctaLink?.href || '',
   };
@@ -81,13 +83,15 @@ function collectAuthorCardCells(row) {
   const imageCell = findPropEl(row, 'image') || cells[0];
   const altCell = findPropEl(row, 'imageAlt') || findPropEl(row, 'alt') || findPropEl(row, 'alt text') || findPropEl(row, 'string') || cells[1];
   const titleCell = findPropEl(row, 'title') || cells[2];
-  const backgroundColorCell = findPropEl(row, 'background-color') || findPropEl(row, 'backgroundColor') || cells[3];
-  const ctaLinkCell = findPropEl(row, 'ctaLink') || cells[4];
+  const descriptionCell = findPropEl(row, 'description') || cells[3];
+  const backgroundColorCell = findPropEl(row, 'background-color') || findPropEl(row, 'backgroundColor') || cells[4];
+  const ctaLinkCell = findPropEl(row, 'ctaLink') || cells[5];
 
   return {
     imageCell,
     altCell,
     titleCell,
+    descriptionCell,
     backgroundColorCell,
     ctaLinkCell,
   };
@@ -97,12 +101,13 @@ function decorateAuthorCard(row) {
   if (!row || row.classList.contains('promo-card-compact')) return;
 
   const {
-    imageCell, altCell, titleCell, backgroundColorCell, ctaLinkCell,
+    imageCell, altCell, titleCell, descriptionCell, backgroundColorCell, ctaLinkCell,
   } = collectAuthorCardCells(row);
 
   row.classList.add('promo-card-compact');
   if (imageCell) imageCell.classList.add('promo-card-compact__image');
   if (titleCell) titleCell.classList.add('promo-card-compact__title');
+  if (descriptionCell) descriptionCell.classList.add('promo-card-compact__description');
   const ctaLink = ctaLinkCell?.querySelector('a');
   if (ctaLink) ctaLink.classList.add('promo-card-compact__cta');
 
@@ -122,7 +127,7 @@ function decorateAuthorCard(row) {
 
   if (imageCell) contentWrapper.append(imageCell);
 
-  const bodyCells = [titleCell, ctaLinkCell, altCell].filter(Boolean);
+  const bodyCells = [titleCell, descriptionCell, ctaLinkCell, altCell].filter(Boolean);
   [...new Set(bodyCells)].forEach((cell) => body.append(cell));
 
   if (body.childElementCount) contentWrapper.append(body);

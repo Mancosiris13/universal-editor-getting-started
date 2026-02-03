@@ -20,6 +20,13 @@
     display: flex;
     justify-content: center;
     width: min(90vw, 444px);
+    align-items: stretch;
+}
+
+.show-case-hero-carousel-swiper .swiper-slide > .promo-card-compact,
+.show-case-hero-carousel-swiper .swiper-slide > .promo-card-compact__link {
+    height: 100%;
+    width: 100%;
 }
 
 .show-case-hero-carousel-swiper .show-case-hero {

@@ -225,6 +225,7 @@ export default async function decorate(block) {
     navigation: slides.length > 1 && config.navigation,
     pagination: slides.length > 1 && config.pagination,
     autoplay: config.autoplay ? { delay: config.autoplayDelay, disableOnInteraction: false } : false,
+    watchOverflow: true,
     breakpoints: {
       0: { slidesPerView: 1.5, spaceBetween: 12, centeredSlides: false },
       765: { slidesPerView: 4, spaceBetween: baseSpace, centeredSlides: config.centeredSlides },

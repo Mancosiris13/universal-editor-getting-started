@@ -99,20 +99,30 @@
     transform: rotate(180deg);
 }
 
+.show-case-hero-carousel .swiper-button-prev.swiper-button-disabled,
+.show-case-hero-carousel .swiper-button-next.swiper-button-disabled {
+    display: none;
+}
+
+.show-case-hero-carousel--locked .swiper-button-prev,
+.show-case-hero-carousel--locked .swiper-button-next {
+    display: none;
+}
+
 .show-case-hero-carousel:not(.swiper-ready) .swiper-button-prev,
 .show-case-hero-carousel:not(.swiper-ready) .swiper-button-next,
 .show-case-hero-carousel:not(.swiper-ready) .swiper-pagination {
     display: none;
 }
 
-@media (max-width: 1400px) {
-    .hrc-carousel .swiper-button-prev,
-    .hrc-carousel .swiper-button-next {
+@media (max-width: 765px) {
+    .show-case-hero-carousel .swiper-button-prev,
+    .show-case-hero-carousel .swiper-button-next {
         display: none;
     }
 }
 
-@media (max-width: 900px) {
+@media (min-width: 1340px) {
     .show-case-hero-carousel .swiper-button-prev,
     .show-case-hero-carousel .swiper-button-next {
         display: none;

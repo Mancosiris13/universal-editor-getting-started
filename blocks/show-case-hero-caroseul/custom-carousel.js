@@ -36,12 +36,14 @@ export default function CustomCarousel({ swiperConfigs, slides }) {
 
   useEffect(() => {
     let observer;
+    let outerRoot;
 
     const initSwiper = async () => {
       if (!rootRef.current || !swiperRef.current || swiperInstanceRef.current) return;
       await ensureHeroCss();
       const Swiper = await ensureSwiper();
       const config = { ...swiperConfigs };
+      outerRoot = rootRef.current.parentElement?.classList.contains('show-case-hero-carousel') ? rootRef.current.parentElement : null;
 
       if (swiperConfigs.navigation) {
         config.navigation = {
@@ -57,9 +59,23 @@ export default function CustomCarousel({ swiperConfigs, slides }) {
         };
       }
 
-      swiperInstanceRef.current = new Swiper(swiperRef.current, config);
+      const swiperInstance = new Swiper(swiperRef.current, config);
+      swiperInstanceRef.current = swiperInstance;
+
+      const updateLockState = () => {
+        const { isLocked } = swiperInstance;
+        rootRef.current.classList.toggle('show-case-hero-carousel--locked', isLocked);
+        outerRoot?.classList.toggle('show-case-hero-carousel--locked', isLocked);
+      };
+
       rootRef.current.classList.add('swiper-ready');
+      outerRoot?.classList.add('swiper-ready');
       swiperRef.current.classList.add('swiper-ready');
+      updateLockState();
+      swiperInstance.on('lock', updateLockState);
+      swiperInstance.on('unlock', updateLockState);
+      swiperInstance.on('resize', updateLockState);
+      swiperInstance.on('slidesLengthChange', updateLockState);
       setReady(true);
     };
 
@@ -101,7 +117,6 @@ export default function CustomCarousel({ swiperConfigs, slides }) {
     : null}
       <div className="swiper show-case-hero-carousel-swiper" ref=${swiperRef}>
         <div className="swiper-wrapper">${slides.map((slide) => html` <div className=${`swiper-slide ${!ready ? 'inline-space' : ''}`} style=${{ '--space': `${swiperConfigs.spaceBetween || 0}px` }}>${slide}</div> `)}</div>
-        ${swiperConfigs.pagination ? html`<div className="swiper-pagination"></div>` : null}
       </div>
     </div>
   `;

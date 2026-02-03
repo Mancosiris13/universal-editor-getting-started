@@ -9,11 +9,13 @@
 
 .show-case-hero-carousel-swiper {
     width: 100%;
+    height: auto;
 }
 
 .show-case-hero-carousel-swiper .swiper-wrapper {
     align-items: stretch;
     display: flex;
+    height: auto;
 }
 
 .show-case-hero-carousel-swiper .swiper-slide {
@@ -21,12 +23,15 @@
     justify-content: center;
     width: min(90vw, 444px);
     align-items: stretch;
+    height: auto;
+    align-self: stretch;
 }
 
 .show-case-hero-carousel-swiper .swiper-slide > .promo-card-compact,
 .show-case-hero-carousel-swiper .swiper-slide > .promo-card-compact__link {
     height: 100%;
     width: 100%;
+    display: flex;
 }
 
 .show-case-hero-carousel-swiper .show-case-hero {

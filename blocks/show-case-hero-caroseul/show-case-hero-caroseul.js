@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { h, render } from '@dropins/tools/preact.js';
 import { generateOptimizedImageUrl, loadCSS } from '../../scripts/aem.js';
-import HeroRailCard from '../hero-rail-card/render.js';
+import PromoCardCompact from '../promo-card-compact/render.js';
 import CustomCarousel from './custom-carousel.js';
 
 function toKebabCase(str = '') {
@@ -56,14 +56,12 @@ function buildSlide(row) {
 
   const imageCell = findPropEl(row, 'image') || cells[0];
   const altCell = findPropEl(row, 'imageAlt') || findPropEl(row, 'alt') || findPropEl(row, 'alt text') || findPropEl(row, 'string') || cells[1];
-  const tagCell = findPropEl(row, 'urgency tag') || findPropEl(row, 'urgencyTag') || findPropEl(row, 'tag') || cells[2];
-  const titleCell = findPropEl(row, 'title') || cells[3];
-  const descriptionCell = findPropEl(row, 'description') || cells[4];
-  const ctaLabelCell = findPropEl(row, 'ctaLabel') || cells[5];
-  const ctaLinkCell = findPropEl(row, 'ctaLink') || cells[6];
+  const titleCell = findPropEl(row, 'title') || cells[2];
+  const backgroundColorCell = findPropEl(row, 'background-color') || findPropEl(row, 'backgroundColor') || cells[3];
+  const ctaLinkCell = findPropEl(row, 'ctaLink') || cells[4];
 
   const imgEl = imageCell?.querySelector('img');
-  const ctaLink = ctaLinkCell?.querySelector('a') || ctaLabelCell?.querySelector('a');
+  const ctaLink = ctaLinkCell?.querySelector('a');
 
   const imageWidth = Number(imgEl?.width) || 900;
   const rawImage = imgEl?.src || '';
@@ -72,10 +70,8 @@ function buildSlide(row) {
   return {
     image: imageOptimized,
     imageAlt: altCell?.textContent?.trim() || imgEl?.alt || '',
-    tagLabel: tagCell?.textContent?.trim() || '',
     title: titleCell?.textContent?.trim() || '',
-    descriptionHTML: descriptionCell?.textContent?.trim() || '',
-    ctaLabel: ctaLabelCell?.textContent?.trim() || '',
+    bgColor: backgroundColorCell?.textContent?.trim() || '',
     ctaHref: ctaLink?.href || '',
   };
 }
@@ -84,19 +80,15 @@ function collectAuthorCardCells(row) {
   const cells = getCells(row);
   const imageCell = findPropEl(row, 'image') || cells[0];
   const altCell = findPropEl(row, 'imageAlt') || findPropEl(row, 'alt') || findPropEl(row, 'alt text') || findPropEl(row, 'string') || cells[1];
-  const tagCell = findPropEl(row, 'urgency tag') || findPropEl(row, 'urgencyTag') || findPropEl(row, 'tag') || cells[2];
-  const titleCell = findPropEl(row, 'title') || cells[3];
-  const descriptionCell = findPropEl(row, 'description') || cells[4];
-  const ctaLabelCell = findPropEl(row, 'ctaLabel') || cells[5];
-  const ctaLinkCell = findPropEl(row, 'ctaLink') || cells[6];
+  const titleCell = findPropEl(row, 'title') || cells[2];
+  const backgroundColorCell = findPropEl(row, 'background-color') || findPropEl(row, 'backgroundColor') || cells[3];
+  const ctaLinkCell = findPropEl(row, 'ctaLink') || cells[4];
 
   return {
     imageCell,
     altCell,
-    tagCell,
     titleCell,
-    descriptionCell,
-    ctaLabelCell,
+    backgroundColorCell,
     ctaLinkCell,
   };
 }
@@ -105,24 +97,22 @@ function decorateAuthorCard(row) {
   if (!row || row.classList.contains('promo-card-compact')) return;
 
   const {
-    imageCell, altCell, titleCell, descriptionCell, ctaLabelCell, ctaLinkCell,
+    imageCell, altCell, titleCell, backgroundColorCell, ctaLinkCell,
   } = collectAuthorCardCells(row);
 
   row.classList.add('promo-card-compact');
   if (imageCell) imageCell.classList.add('promo-card-compact__image');
-  // if (tagCell) tagCell.classList.add('promo-card-compact__tag');
   if (titleCell) titleCell.classList.add('promo-card-compact__title');
-  if (descriptionCell) descriptionCell.classList.add('promo-card-compact__description');
-
-  if (ctaLabelCell) ctaLabelCell.classList.add('promo-card-compact__cta');
-
-  const ctaLink = ctaLinkCell?.querySelector('a') || ctaLabelCell?.querySelector('a');
+  const ctaLink = ctaLinkCell?.querySelector('a');
   if (ctaLink) ctaLink.classList.add('promo-card-compact__cta');
 
   if (altCell) altCell.hidden = true;
-  if (ctaLinkCell && ctaLinkCell !== ctaLabelCell) {
-    ctaLinkCell.hidden = true;
+  if (backgroundColorCell) {
+    const bgColor = backgroundColorCell.textContent?.trim();
+    if (bgColor) row.style.backgroundColor = bgColor;
+    backgroundColorCell.hidden = true;
   }
+  if (ctaLinkCell) ctaLinkCell.hidden = true;
 
   const contentWrapper = document.createElement('div');
   contentWrapper.className = 'promo-card-compact__content-wrapper';
@@ -132,7 +122,7 @@ function decorateAuthorCard(row) {
 
   if (imageCell) contentWrapper.append(imageCell);
 
-  const bodyCells = [titleCell, descriptionCell, ctaLabelCell, ctaLinkCell, altCell].filter(Boolean);
+  const bodyCells = [titleCell, ctaLinkCell, altCell].filter(Boolean);
   [...new Set(bodyCells)].forEach((cell) => body.append(cell));
 
   if (body.childElementCount) contentWrapper.append(body);
@@ -198,14 +188,14 @@ export default async function decorate(block) {
     configRow = maybeConfigRow;
   }
 
-  const nestedHeroBlocks = [...block.querySelectorAll(':scope > div[data-block-name="hero-rail-card"], :scope > div.hero-rail-card')];
+  const nestedHeroBlocks = [...block.querySelectorAll(':scope > div[data-block-name="promo-card-compact"], :scope > div.promo-card-compact')];
   if (nestedHeroBlocks.length) {
     slideRows = nestedHeroBlocks;
   }
 
   const isAuthor = window.xwalk?.isAuthorEnv || document.documentElement.hasAttribute('data-aue-version');
   if (isAuthor) {
-    block.classList.add('carousel-hero-rail-cards', 'carousel-hero-rail-cards--author');
+    block.classList.add('show-case-hero-carousel', 'show-case-hero-carousel--author');
     if (!slideRows.length) return;
     if (!block.querySelector(':scope > .show-case-hero-carousel')) {
       await buildAuthorCarousel(block, slideRows, config, configRow);
@@ -217,9 +207,9 @@ export default async function decorate(block) {
   if (!slides.length) return;
 
   block.textContent = '';
-  block.classList.add('carousel-hero-rail-cards');
+  block.classList.add('show-case-hero-carousel');
 
-  const slidesContent = slides.map((props, idx) => h(HeroRailCard, { ...props, key: idx }));
+  const slidesContent = slides.map((props, idx) => h(PromoCardCompact, { ...props, key: idx }));
 
   const baseSpace = config.spaceBetween;
   const swiperConfigs = {

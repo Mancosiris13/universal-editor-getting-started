@@ -1,113 +1,10 @@
-/* .show-case-hero-caroseul {
-    position: relative;
-    width: 100%;
-    padding: 12px 0 32px;
-}
-
-.show-case-hero-caroseul__carousel {
-    position: relative;
-}
-
-.show-case-hero-caroseul__swiper {
-    width: 100%;
-}
-
-.show-case-hero-caroseul__swiper .swiper-wrapper {
-    align-items: stretch;
-}
-
-.show-case-hero-caroseul__swiper .swiper-slide {
-    display: flex;
-    width: min(70vw, 220px);
-}
-
-.show-case-hero-caroseul--author .promo-card-compact,
-.show-case-hero-caroseul--author .promo-card-compact__link {
-    width: 100%;
-}
-
-.show-case-hero-caroseul__swiper .swiper-slide > .promo-card-compact,
-.show-case-hero-caroseul__swiper .swiper-slide > .promo-card-compact__link {
-    width: 100%;
-}
-
-.show-case-hero-caroseul__swiper .swiper-pagination {
-    position: static;
-    margin-top: 12px;
-}
-
-.show-case-hero-caroseul__swiper .swiper-pagination-bullet {
-    background: #0f172a;
-    opacity: 0.25;
-}
-
-.show-case-hero-caroseul__swiper .swiper-pagination-bullet-active {
-    opacity: 1;
-}
-
-.show-case-hero-caroseul__carousel .swiper-button-prev,
-.show-case-hero-caroseul__carousel .swiper-button-next {
-    width: 40px;
-    height: 40px;
-    background: rgb(255 255 255 / 92%);
-    border-radius: 999px;
-    display: grid;
-    place-items: center;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
-    z-index: 2;
-    cursor: pointer;
-    border: 1px solid #e5e7eb;
-}
-
-.show-case-hero-caroseul__carousel .swiper-button-prev::after,
-.show-case-hero-caroseul__carousel .swiper-button-next::after {
-    content: none !important;
-    background: none !important;
-}
-
-.show-case-hero-caroseul__carousel .swiper-button-prev {
-    left: 0;
-    transform: translate(-50%, -50%);
-}
-
-.show-case-hero-caroseul__carousel .swiper-button-next {
-    right: 0;
-    transform: translate(50%, -50%);
-}
-
-.show-case-hero-caroseul__carousel .swiper-button-prev img,
-.show-case-hero-caroseul__carousel .swiper-button-next img {
-    width: 18px;
-    height: 18px;
-    display: block;
-}
-
-.show-case-hero-caroseul--author {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
-
-@media (max-width: 900px) {
-    .show-case-hero-caroseul__carousel .swiper-button-prev,
-    .show-case-hero-caroseul__carousel .swiper-button-next {
-        display: none;
-    }
-}
-
-@media (max-width: 600px) {
-    .show-case-hero-caroseul__swiper .swiper-slide {
-        width: 80vw;
-    }
-} */
-
 .show-case-hero-carousel {
     position: relative;
     width: 100%;
-    padding: 12px 0 32px;
+}
+
+.show-case-hero-caroseul-container {
+    margin: -64px !important;
 }
 
 .show-case-hero-carousel-swiper {
@@ -190,6 +87,13 @@
 .show-case-hero-carousel:not(.swiper-ready) .swiper-button-next,
 .show-case-hero-carousel:not(.swiper-ready) .swiper-pagination {
     display: none;
+}
+
+@media (max-width: 1400px) {
+    .hrc-carousel .swiper-button-prev,
+    .hrc-carousel .swiper-button-next {
+        display: none;
+    }
 }
 
 @media (max-width: 900px) {

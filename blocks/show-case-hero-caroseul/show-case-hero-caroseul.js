@@ -180,7 +180,7 @@ export default async function decorate(block) {
     pagination: true,
     autoplay: false,
     autoplayDelay: 6000,
-    loop: true,
+    loop: false,
     centeredSlides: false,
   };
 
@@ -218,18 +218,17 @@ export default async function decorate(block) {
 
   const baseSpace = config.spaceBetween;
   const swiperConfigs = {
-    slidesPerView: config.slidesPerView,
+    slidesPerView: 6,
     spaceBetween: baseSpace,
     centeredSlides: config.centeredSlides,
-    loop: slides.length > 1 && config.loop,
+    loop: false,
     navigation: slides.length > 1 && config.navigation,
     pagination: slides.length > 1 && config.pagination,
     autoplay: config.autoplay ? { delay: config.autoplayDelay, disableOnInteraction: false } : false,
     breakpoints: {
-      0: { slidesPerView: 1, spaceBetween: 12, centeredSlides: false },
-      500: { slidesPerView: config.slidesPerView, spaceBetween: baseSpace, centeredSlides: config.centeredSlides },
-      768: { spaceBetween: baseSpace + 4 },
-      1024: { spaceBetween: baseSpace + 8 },
+      0: { slidesPerView: 1.5, spaceBetween: 12, centeredSlides: false },
+      765: { slidesPerView: 4, spaceBetween: baseSpace, centeredSlides: config.centeredSlides },
+      1440: { slidesPerView: 6, spaceBetween: baseSpace + 8, centeredSlides: config.centeredSlides },
     },
   };
 

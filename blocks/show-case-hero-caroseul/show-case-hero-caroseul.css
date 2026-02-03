@@ -20,11 +20,10 @@
 
 .show-case-hero-carousel-swiper .swiper-slide {
     display: flex;
-    justify-content: center;
-    width: min(90vw, 444px);
     align-items: stretch;
     height: auto;
     align-self: stretch;
+    box-sizing: border-box !important;
 }
 
 .show-case-hero-carousel-swiper .swiper-slide > .promo-card-compact,
@@ -32,6 +31,11 @@
     height: 100%;
     width: 100%;
     display: flex;
+}
+
+.show-case-hero-carousel-swiper .swiper-slide > .promo-card-compact__link > .promo-card-compact {
+    flex: 1;
+    width: 100%;
 }
 
 .show-case-hero-carousel-swiper .show-case-hero {
@@ -112,16 +116,5 @@
     .show-case-hero-carousel .swiper-button-prev,
     .show-case-hero-carousel .swiper-button-next {
         display: none;
-    }
-}
-
-@media (max-width: 500px) {
-    .show-case-hero-carousel-swiper .swiper-slide {
-        width: 100%;
-        gap: 50px;
-    }
-
-    .show-case-hero-carousel-swiper .show-case-hero {
-        width: 100%;
     }
 }

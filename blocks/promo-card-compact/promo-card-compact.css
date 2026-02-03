@@ -38,9 +38,8 @@ h3 {
 
 .promo-card-compact__image {
     border-radius: 8px;
-    width: 100%;
+    max-width: 100%;
     height: auto;
-    max-width: clamp(88px, 20vw, 212px);
 }
 
 .promo-card-compact__body {
@@ -62,6 +61,12 @@ h3 {
     font-weight: 500;
     color: #232323;
     line-height: 16px;
+}
+
+@media (max-width: 765px) {
+    .promo-card-compact__image {
+        max-width: 100%;
+    }
 }
 
 @media (min-width: 550px) {

@@ -1593,6 +1593,15 @@
       },
       {
         "component": "text",
+        "name": "background-color",
+        "label": "Background Color",
+         "description": "Hex",
+        "valueType": "string",
+        "value": "",
+        "inline": false
+      },
+      {
+        "component": "text",
         "name": "alt",
         "label": "Alt",
         "valueType": "string"

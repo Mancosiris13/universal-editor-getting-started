@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/hlxsites/aem-boilerplate-commerce#readme",
   "devDependencies": {
-    "@adobe/aem-cli": "^16.5.8",
+    "@adobe/aem-cli": "^16.16.19",
     "@babel/eslint-parser": "7.27.0",
     "@dropins/build-tools": "1.0.1",
     "eslint": "8.57.1",

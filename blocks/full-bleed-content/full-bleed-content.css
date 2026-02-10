@@ -1,6 +1,6 @@
 p,
 h2 {
-    color: #000000;
+    color: #000;
     font-family: 'Circular Std', roboto, roboto-fallback, system-ui, sans-serif !important;
     ;
 }
@@ -43,7 +43,7 @@ h2 {
     display: none;
 }
 
-@media (width < 765px) {
+@media (max-width: 765px) {
     .full-bleed-content_father-container {
         flex-direction: column-reverse !important;
         margin: 0 16px;

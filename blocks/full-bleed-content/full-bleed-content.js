@@ -6,14 +6,22 @@ function getText(element) {
   return element?.textContent?.trim() || '';
 }
 
-
-export default function decorate(block){
-    if (window.xwalk?.isAuthorEnv || document.documentElement.hasAttribute('data-aue-version')) {
+export default function decorate(block) {
+  if (window.xwalk?.isAuthorEnv || document.documentElement.hasAttribute('data-aue-version')) {
     block.classList.add('full-bleed-content--author');
   }
   const cells = [...block.children];
 
-  const [imgDeskCell, imgMobCell,backgroundCell,altCell,titleCell,descriptionCell,linkToCell,alingLeftCell] = cells
+  const [
+    imgDeskCell,
+    imgMobCell,
+    backgroundCell,
+    altCell,
+    titleCell,
+    descriptionCell,
+    linkToCell,
+    alingLeftCell,
+  ] = cells;
 
   const imgDeskAux = imgDeskCell?.querySelector('img');
   const imgMobAux = imgMobCell?.querySelector('img');
@@ -36,9 +44,8 @@ export default function decorate(block){
     title: getText(titleCell) || '',
     description: getText(descriptionCell) || '',
     href: linkAux?.href || '/',
-    leftAlign: getText(alingLeftCell) === 'true'
-  }
+    leftAlign: getText(alingLeftCell) === 'true',
+  };
   block.textContent = '';
-  render(h(FullBleedContent, props),block);
-  console.log(props)
+  render(h(FullBleedContent, props), block);
 }

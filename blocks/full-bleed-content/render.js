@@ -4,18 +4,18 @@ import htm from '../../scripts/htm.js';
 const html = htm.bind(h);
 
 export default function FullBleedContent({
-    imgDesk,
-    imgMob,
-    background,
-    alt,
-    title,
-    description,
-    href,
-    leftAlign }) {
-
-    const bleed = html`
+  imgDesk,
+  imgMob,
+  background,
+  alt,
+  title,
+  description,
+  href,
+  leftAlign,
+}) {
+  const bleed = html`
         <section className="full-bleed-content" style=${{ backgroundColor: background }}>
-            <div className="full-bleed-content_father-container" style=${leftAlign?{flexDirection: 'row-reverse'}:{flexDirection: 'row'}}>
+            <div className="full-bleed-content_father-container" style=${leftAlign ? { flexDirection: 'row-reverse' } : { flexDirection: 'row' }}>
                 <div className="full-bleed-content_text-container">
                     <h2>${title}</h2>
                     <p>${description}</p>
@@ -29,6 +29,5 @@ export default function FullBleedContent({
             </div>
         </section>
         `;
-    console.log("Mensaje desde el render jeje")
-    return bleed;
+  return bleed;
 }

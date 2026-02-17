@@ -24,6 +24,8 @@ h2 {
 .full-bleed-content_text-container h2 {
     font-size: 32px;
     font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 16px;
 }
 
 .full-bleed-content_text-container p {
@@ -60,5 +62,17 @@ h2 {
 
     .full-bleed-content_image-mobile {
         display: block;
+    }
+}
+
+@media (min-width: 766px) {
+    .full-bleed-content_text-container {
+        width: 50%;
+        max-width: 450px;
+    }
+
+    .full-bleed-content_image-container {
+        width: 50%;
+        max-width: 786px;
     }
 }

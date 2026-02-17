@@ -1582,7 +1582,8 @@
         "name": "image",
         "label": "Desktop Image",
         "valueType": "string",
-        "multi": false
+        "multi": false,
+        "required": true
       },
       {
         "component": "reference",

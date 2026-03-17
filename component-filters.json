@@ -35,7 +35,9 @@
       "headers-with-colors",
       "promo-card-compact",
       "show-case-hero-caroseul",
-      "full-bleed-content"
+      "full-bleed-content",
+      "content-text-center",
+      "hybrid-half-image"
     ]
   },
   {

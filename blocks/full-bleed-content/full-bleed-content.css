@@ -36,6 +36,7 @@ h2 {
 .full-bleed-content_image-container img {
     height: auto;
     width: 100%;
+    border-radius: 60px;
 }
 
 .full-bleed-content_image-desktop {

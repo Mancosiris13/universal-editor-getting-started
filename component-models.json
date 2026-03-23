@@ -1633,5 +1633,97 @@
         "value": false
       }
     ]
+  },
+  {
+    "id": "hybrid-half-image",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Desktop Image",
+        "valueType": "string",
+        "multi": false,
+        "required": true
+      },
+      {
+        "component": "reference",
+        "name": "imageMobile",
+        "label": "Mobile Image",
+        "valueType": "string",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "background-color",
+        "label": "Background Color",
+         "description": "Hex",
+        "valueType": "string",
+        "value": "",
+        "inline": false
+      },
+      {
+        "component": "text",
+        "name": "alt",
+        "label": "Alt",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "linkTo",
+        "label": "Link To",
+        "description": "Destination URL for the Image"
+      },
+      {
+        "component": "boolean",
+        "name": "alignLeft",
+        "label": "Align Left",
+        "valueType": "boolean",
+        "value": false
+      }
+    ]
+  },
+  {
+    "id": "content-text-center",
+    "fields": [
+      {
+        "component": "text",
+        "name": "background-color",
+        "label": "Background Color",
+         "description": "Hex",
+        "valueType": "string",
+        "value": "",
+        "inline": false
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "linkTo",
+        "label": "Link To",
+        "description": "Destination URL for the Image"
+      }
+    ]
   }
 ]

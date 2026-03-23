@@ -1596,7 +1596,7 @@
         "component": "text",
         "name": "background-color",
         "label": "Background Color",
-         "description": "Hex",
+        "description": "Hex",
         "valueType": "string",
         "value": "",
         "inline": false
@@ -1656,7 +1656,7 @@
         "component": "text",
         "name": "background-color",
         "label": "Background Color",
-         "description": "Hex",
+        "description": "Hex",
         "valueType": "string",
         "value": "",
         "inline": false
@@ -1701,7 +1701,7 @@
         "component": "text",
         "name": "background-color",
         "label": "Background Color",
-         "description": "Hex",
+        "description": "Hex",
         "valueType": "string",
         "value": "",
         "inline": false
@@ -1713,6 +1713,43 @@
         "valueType": "string"
       },
       {
+        "component": "select",
+        "name": "heading-tag",
+        "label": "Heading Tag",
+        "valueType": "string",
+        "description": "Default: H1",
+        "options": [
+          {
+            "name": "H1",
+            "value": "h1"
+          },
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          },
+          {
+            "name": "H5",
+            "value": "h5"
+          },
+          {
+            "name": "H6",
+            "value": "h6"
+          },
+          {
+            "name": "P",
+            "value": "p"
+          }
+        ]
+      },
+      {
         "component": "richtext",
         "name": "description",
         "label": "Description",
@@ -1722,7 +1759,7 @@
         "component": "aem-content",
         "name": "linkTo",
         "label": "Link To",
-        "description": "Destination URL for the Image"
+        "description": "Destination URL page"
       }
     ]
   }

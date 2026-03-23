@@ -26,9 +26,8 @@ export default function decorate(block) {
     title: getText(titleCell) || '',
     headingTag: getText(headingTagCell) || 'h1',
     description: getText(descriptionCell) || '',
-    href: linkAux || ''
-  }
+    href: linkAux || '',
+  };
   block.textContent = '';
-  render(h(ContentTextCenter,props), block);
+  render(h(ContentTextCenter, props), block);
 }
-

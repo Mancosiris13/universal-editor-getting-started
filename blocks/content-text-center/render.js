@@ -7,7 +7,7 @@ export default function ContentTextCenter({
   title,
   headingTag,
   description,
-  href
+  href,
 }) {
   const text = html`
         <section className="content-text-center" style=${{ backgroundColor: background }}>

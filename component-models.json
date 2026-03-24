@@ -1750,6 +1750,32 @@
         ]
       },
       {
+        "component": "number",
+        "valueType": "number",
+        "name": "font-size-desktop",
+        "label": "Font Size Desktop",
+        "description": "Tamaño de fuente Desktop, 0 para valor por defecto",
+        "value": 0,
+        "validation": {
+          "numberMin": 0,
+          "numberMax": 80,
+          "customErrorMsg": "Solo números entre 0 y 80"
+        }
+      },
+      {
+        "component": "number",
+        "valueType": "number",
+        "name": "font-size-mobile",
+        "label": "Font Size Mobile",
+        "description": "Tamaño de fuente Mobile, 0 para valor por defecto",
+        "value": 0,
+        "validation": {
+          "numberMin": 0,
+          "numberMax": 80,
+          "customErrorMsg": "Solo números entre 0 y 80"
+        }
+      },
+      {
         "component": "richtext",
         "name": "description",
         "label": "Description",

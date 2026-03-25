@@ -1596,7 +1596,7 @@
         "component": "text",
         "name": "background-color",
         "label": "Background Color",
-         "description": "Hex",
+        "description": "Hex",
         "valueType": "string",
         "value": "",
         "inline": false
@@ -1656,7 +1656,7 @@
         "component": "text",
         "name": "background-color",
         "label": "Background Color",
-         "description": "Hex",
+        "description": "Hex",
         "valueType": "string",
         "value": "",
         "inline": false
@@ -1701,7 +1701,7 @@
         "component": "text",
         "name": "background-color",
         "label": "Background Color",
-         "description": "Hex",
+        "description": "Hex",
         "valueType": "string",
         "value": "",
         "inline": false
@@ -1713,6 +1713,69 @@
         "valueType": "string"
       },
       {
+        "component": "select",
+        "name": "heading-tag",
+        "label": "Heading Tag",
+        "valueType": "string",
+        "description": "Default: H1",
+        "options": [
+          {
+            "name": "H1",
+            "value": "h1"
+          },
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          },
+          {
+            "name": "H4",
+            "value": "h4"
+          },
+          {
+            "name": "H5",
+            "value": "h5"
+          },
+          {
+            "name": "H6",
+            "value": "h6"
+          },
+          {
+            "name": "P",
+            "value": "p"
+          }
+        ]
+      },
+      {
+        "component": "number",
+        "valueType": "number",
+        "name": "font-size-desktop",
+        "label": "Font Size Desktop",
+        "description": "Tamaño de fuente Desktop, 0 para valor por defecto",
+        "value": 0,
+        "validation": {
+          "numberMin": 0,
+          "numberMax": 80,
+          "customErrorMsg": "Solo números entre 0 y 80"
+        }
+      },
+      {
+        "component": "number",
+        "valueType": "number",
+        "name": "font-size-mobile",
+        "label": "Font Size Mobile",
+        "description": "Tamaño de fuente Mobile, 0 para valor por defecto",
+        "value": 0,
+        "validation": {
+          "numberMin": 0,
+          "numberMax": 80,
+          "customErrorMsg": "Solo números entre 0 y 80"
+        }
+      },
+      {
         "component": "richtext",
         "name": "description",
         "label": "Description",
@@ -1722,7 +1785,7 @@
         "component": "aem-content",
         "name": "linkTo",
         "label": "Link To",
-        "description": "Destination URL for the Image"
+        "description": "Destination URL page"
       }
     ]
   }
